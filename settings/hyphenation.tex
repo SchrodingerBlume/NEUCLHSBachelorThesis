@@ -1,0 +1,11 @@
+% =========================== %
+% ======  西文断字设置  ====== %
+% =====  默认完全不断字  ===== %
+% =========================== %
+
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000 % hyphenpenalty越大断字出现的就越少
+\hbadness=10000 % tolerance越大，换行就会越少，即把本该断开放到下一行的单词，完整地留在当前行
+% 如果遇到了断字不对的情况，可以手动指定某单词如何断字
+\hyphenation{hy-phen-a-tion} % 例如此命令使hyphenation只能从标有短横线的地方断开
