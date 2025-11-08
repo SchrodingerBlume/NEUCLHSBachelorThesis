@@ -1,0 +1,21 @@
+\ack %一定要保留这行命令
+
+GitHub上已有许多东北大学学位论文的\LaTeX 模板，多以研究生学位论文模板为主，例如@mervin0502多年前开发的博士学位论文\LaTeX 模板——neuthesis\footnote{见\textcolor{blue}{https://github.com/mervin0502/neuthesis}。}，以及后来@sci-m-wang基于前者开发并维护至今的NEU-Thesis\footnote{见\textcolor{blue}{https://github.com/sci-m-wang/Neu-Thesis}。}。对于本科生毕业设计，2018年@tzaiyang开发了NEUBachelorThesis\footnote{见\textcolor{blue}{https://github.com/tzaiyang/NEUBachelorThesis}。}，而@Acytoo在2019年又基于@tzaiyang的模板开发了neu\_bachelor\_thesis\_template\footnote{见\textcolor{blue}{https://github.com/Acytoo/neu\_bachelor\_thesis\_template}。}，以适应学校更新的要求；@neuljh在2024年开发了NEU-undergraduate-thesis-LaTeX-template\footnote{见\textcolor{blue}{https://github.com/neuljh/NEU-undergraduate-thesis-LaTeX-template}。}，此外还有不胜枚举的原创/变体模板——尽管有这么多的选择，却没有一款完全符合生命科学与健康学院的要求。于是我着手开发了此模板。
+
+回顾开发历程，当我在深夜灯下，一次次敲击键盘调试间距、调字距、调封面坐标，甚至为一个小数点后的毫米差值苦思冥想时，我常常会自问：我为何执着于此？直到此刻，我才明白，这份模板，不只是代码的堆叠，不只是页面的排布，它承载着我对“完美”与“秩序”的追求，也饱含着我作为一名工科学生对“形式亦是内容”的朴素信仰。
+
+本模板并非一时兴起，而是出于对格式一致性、逻辑严谨性与排版美感的持续关注。从比对 Word 样式、调试段间距，到测试中西文混排，每一步都投入了大量时间与心力。这是一次孤独却自由的探索。从“能跑起来”到“要优雅、要规范”，我学会了与 \LaTeX 对话：如何让节间距跟官方模板相比不多一分、不少一毫，又如何在一行行代码里找到“美”的轮廓。那些在\TeX 代码间徘徊的夜晚，那些为了解决目录缩进和节距插值所反复调试的凌晨，虽无掌声，却胜有千言。
+
+首先我要感谢我导入的每一个宏包，是前人的智慧给了我们方便的今天；其次，我要感谢大语言模型的耐心，虽然你们写的东西总是问题多多，甚至无法编译，但是也是在你们的帮助下我才能够顺利完成本模板\footnote{特别感谢ChatGPT 4o、ChatGPT o4-mini-high，你们是我的主力；Claude Sonnet 4，你有时候写的确实比ChatGPT好。另注：此模板发布时，这几个模型已经退役了，悲。}；感谢\LaTeX\ Studio论坛的前辈，为我提供了许多实现思路\footnote{特别感谢@Sagittarius Rover、@Izumi Sakai和@雾月。}；感谢将宏包文档翻译成中文的前辈们，是你们让我能更好地理解宏包源码\footnote{特别感谢@赣医一附院神经内科黄旭华、@张泓知和@\href{mailto:zhangsming@foxmail.com}{\textcolor{blue}{zhangsming}}。}。感谢GitHub上众多学位论文模板作者的开源精神，为我提供了结构上的启发\footnote{借鉴了包括但不啻于\href{https://github.com/tuna/thuthesis/releases}{\textcolor{blue}{清华大学}}、\href{https://github.com/TJ-CSCCG/tongji-undergrad-thesis}{\textcolor{blue}{同济大学}}在内的学位论文模板。}，其中尤其要感谢@tzaiyang开发的NEUBachelorThesis\footnote{见\textcolor{blue}{https://github.com/tzaiyang/NEUBachelorThesis}。}，为我提供了此模板的主体；感谢@hushidong及时修复了biblatex-gb7714-2025宏包的bug，让我可以更好地输出全半角符号切换地参考文献\footnote{见\textcolor{blue}{https://github.com/hushidong/biblatex-gb7714-2025/issues/3}及\textcolor{blue}{https://github.com/hushidong/biblatex-gb7714-2025/issues/4}。}；最后，更感谢当初那个对排版细节吹毛求疵的自己，才有了今日我能坦然面对这个虽然尚只是\verb|Pre-2|版本，却蕴藏着我全部热忱的NEUCLHSBachelorThesis。
+
+此模板未敢言完美，仅期为东大生科院同样在Word排版的不便利中挣扎的使用者，提供一份其他的解决方案。若有所得，是我之幸。若它能在你手中舒展开来，让你安心写下学术的篇章，那便是对我最深的鼓励。
+
+谨以此模板，献给每一个在格式细节中寻求极致、在冷门技术中找寻温度的你\footnote{并非冷门，只是为了同我们对\LaTeX 的热情形成鲜明的对比。}。
+
+\begin{flushright}
+\kaishu
+吴俊豪\\
+生物工程2201\\
+\today\\
+于辽宁沈阳创新路195号
+\end{flushright}

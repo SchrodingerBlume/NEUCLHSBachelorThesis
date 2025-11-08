@@ -1,0 +1,749 @@
+\chapter{制作规范}\label{chapter2}
+
+\section{论文规范}
+
+本模板基于TeX Live 2025开发，编译器应选择\XeLaTeX（XeLaTeX），文献工具应选择\textBibTeX，并按照\XeLaTeX $\rightarrow$ \textBibTeX $\rightarrow$ \XeLaTeX $\rightarrow$ \XeLaTeX 的顺序逐次编译。
+
+\subsection{印刷本}
+
+印刷本论文要求双面打印，论文裁切后规格为70 g白色A4打印纸。一律左侧装订。封面用纸由学校统一制作，免费发放。
+
+在\verb|settings/printmode.tex|中设置为双面模式、对称页边距后生成的PDF可以直接用于打印。
+
+\subsection{电子版}
+
+电子版论文应为一个PDF文件（不加密），论文格式与印刷版论文一致。论文学术声明页需手写签名并扫描。
+
+\section{封面}
+
+本部分请进入\verb|settings/cover.tex|进行配置，其中：\verb|\SetCoverTitle{}|用于设置论文总标题，标题会自动断行（如果对断行位置不满意，可以在需要断行处加上\verb|\\|强制换行），此外，在封面标题中使用斜体需要使用\verb|\coverxt{}|命令包围需要斜体的文字，普通的\verb|\textit{}|此处无效；\verb|\SetCoverID{}|用于输入学号；\verb|\SetCoverMajor{}|用于输入专业；\verb|\SetCoverName{}|用于输入姓名；\verb|\SetCoverTeacher{}|用于输入指导教师姓名；\verb|\SetCoverTeacherTitle{}|用于输入指导教师职称；\verb|\SetCoverDate{}|用于输入日期，包括年和月。
+注释掉\verb|\usebigcovertrue|则蓝色大封面不会再显示。
+
+\section{学术声明}
+
+本部分请进入\verb|settings/statement.tex|进行配置，命令格式为\verb|\SetUserSignatu|\\
+\verb|re{<签署日期>}{<电子签名图片路径>}|，签署日期应包括年月日，电子签名应为\verb|png|格式，从左至右横排签名，长宽比约为3:1，可以选择将\verb|settings/signature.png|文件替换为自己的签名，也可以选择引导至自定义路径。
+
+\section{页面版式}
+
+节的起始位置为奇数页。本模板在启用双面模式时会自动添加空白页。
+
+\section{摘要}
+
+请在\verb|\begin{cabstract}…\end{cabstract}|间撰写中文摘要；在\verb|\ckeywords{}|\\
+内输入中文关键词，词与词之间用中文全角分号隔开，最后一个关键词不打标点符号。
+
+请在\verb|\begin{eabstract}…\end{eabstract}|间撰写英文摘要；在\verb|\ekeywords{}|\\
+内输入英文关键词，词与词之间用西文半角分号隔开，分号和下一个关键词之间应留一个空格，最后一个关键词不打标点符号。
+
+\section{正文}
+
+正文各章节应拟标题。标题要简明扼要，不应使用标点符号。各章、节、条的层次按照“1\slh 、1.1\slh 、1.1.1\slh ”标识，分别对应\verb|\chapter|、\verb|\section|、\verb|\subsection|，条以下具体款项的层次依次按照“1.1.1.1”（对应\verb|\subsubsection|）、（1）、①、A和a”标识。最后四者的使用可以参考节\ref{youxuliebiao}。
+
+在\verb|settings/other.tex|中可以分别设置目录中的章节的数字编号、章节标题内容中的西文及章节的页码是否使用黑体。此外还可以分别设置正文中各级标题的数字编号与内容中的西文是否使用黑体。
+
+行文中，带圈数字可使用\verb|\quan[<十位数字>]{<个位数字>}|命令打出，其中十位数字可以缺省，例如\verb|\quan{5}|编译得到\quan{5}，而\verb|\quan[7]{7}|编译得到\quan[7]{7}，该命令最大支持到\quan[9]{9}。100之后可以使用\verb|\Quan{}|，如\verb|\Quan{999}|编译得到\Quan{999}。四位数及之后的带圈数字会随着位数的增加越来越“长”，如\Quan{9999}、\Quan{99999}、\Quan{999999}\slh 尽管在美观性上差强人意，但私以为一般没人会用到这么大的带圈数字。
+
+添加章节应在\verb|data|中新建\verb|chap0x.tex|，各章节\verb|tex|文件均应当以章节标题命令\verb|\chapter|作为起始，同时需要在\verb|settings/chapter.tex|文件中按照章节顺序使用\verb|\input{data/chap0x}|命令依次插入对应章节。
+
+\subsection{段落}
+
+每一个段落在编译后都会自动首行缩进两字符。在代码中另起新段时，应空出一行，否则只会识别为同一段落，如：
+
+\begin{verbatim}
+这是第一段
+
+这是第二段
+这还是第二段
+\end{verbatim}
+编译得到
+
+这是第一段
+
+这是第二段
+这还是第二段
+
+也可以用\verb|\par| 强制换段，如：
+\begin{verbatim}
+第一段\par
+第二段
+\end{verbatim}
+编译得到
+
+第一段\par
+第二段
+
+而\verb|\\|用于同一段落中强制换行，即换行后不会首行缩进，如：
+\begin{verbatim}
+第一段\\第二段
+\end{verbatim}
+编译得到
+
+第一段\\第二段
+
+由此可见，使用\verb|\\|换行后不会产生新的段落，而是会顶格。
+
+\subsection{文字格式}
+
+\begin{verbatim}
+\textbf{加粗}、\textit{斜体}、\underline{下划线}、\textcolor{red}{变成红色}。
+\end{verbatim}
+编译得到
+
+\textbf{加粗}、\textit{斜体}、\underline{下划线}、\textcolor{red}{变成红色}。
+
+\verb|\textcolor|的其他颜色参数可以参考：\href{https://blog.csdn.net/m0_46275020/article/details/126534852}{\textcolor{blue}{点击跳转}}。
+
+\subsection{列表}
+
+\subsubsection{无序列表}
+
+基本框架为：
+\begin{verbatim}
+\begin{itemize}
+  \item 苹果
+  \item[*] 香蕉
+  \item[-] 橘子
+\end{itemize}
+\end{verbatim}
+编译得到
+
+\begin{itemize}
+  \item 苹果
+  \item[*] 香蕉
+  \item[-] 橘子
+\end{itemize}
+
+\subsubsection{有序列表}\label{youxuliebiao}
+
+使用方法与无序列表大致相同，环境名称是\verb|enumerate|。其支持设置编号的格式，由参数控制，格式是\verb|\begin{enumerate}[<可选参数>]|。值得一提的是，当参数缺省时，数字编号与文字的间距是过大的。加上参数\verb|shuzi|再编译即可解决此问题，对比如下：
+
+\begin{multicols}{2}
+\begin{enumerate}
+  \item 参数
+  \item 缺省
+  \item 效果
+\end{enumerate}
+
+\columnbreak
+
+\begin{enumerate}[shuzi]
+  \item 参数
+  \item \verb|shuzi|
+  \item 效果
+\end{enumerate}
+\end{multicols}
+
+此外，模板还提供了（1）、①、A.和a.四种格式的参数，分别是\verb|kuohao|、\verb|quan|、\verb|daxie|和\verb|xiaoxie|。
+
+\subsection{引用与超链接}\label{test}
+
+对某标题的交叉引用，需先为该标题加入标签（\verb|\label|命令）。例如本节标题代码为\verb|\subsection{引用与超链接}\label{test}|，则使用\verb|\ref{test}|即可得到一个支持点击跳转的“\ref{test}”。
+
+公式、图和表格的引用分别见\ref{equation}、\ref{figure}和\ref{tablecite}。
+
+此外，还可以像\verb|\href{https://www.latex-project.org}{\LaTeX 官网}|这样插入网页链接：\href{https://www.latex-project.org}{\LaTeX 官网}。
+
+\subsection{强制换页}
+
+每一章（\verb|chapter|）都会自动换页，但如果在章节内某处想要强制换页，可以使用\verb|\clearpage|命令，例如节\ref{clearpage}前就加了一行此命令。
+
+\section{参考文献}
+
+参考文献的著录应符合国家标准GB/T 7714—2005，所有被引用文献均要列入参考文献中，请将涉及的引文\textBibTeX 信息放入\verb|ref/ref.bib|中。
+
+参考文献一般包括专著、专著中的析出文献、连续出版物、连续出版物的析出文献、专利文献以及电子资源等。参考文献的著录信息一般包括责任者、提名、版本、出版项、页码、获取和访问路径、数字对象唯一标识符等，但不一定全部包括。
+
+\begin{enumerate}[shuzi]
+    \item 责任者主要负责创建信息资源（参考文献数据）的人或组织，包括著者、编者、学位论文撰写者、专利申请者或专利权人、报告撰写者、标准提出者、析出文献的著者等，它们往往出现在著录格式的最前面，对应\texttt{ref.bib}文件中的\texttt{author = \{\}}。尽管国标和学校文档中均要求姓氏全大写，但根据学院文档的要求，本模板设置为姓氏仅首字母大写。\texttt{ref.bib}文件中姓名的输入具体原则如下：
+
+    \begin{enumerate}[kuohao]
+        \item 人名与人名之间用\texttt{and}隔开，如\texttt{张三 and 李四}；
+        \item 西文姓在后，如\texttt{Si Li}；
+        \item 若想将西文姓前置，需要在姓后加半角逗号，如\texttt{Zhang, San}；
+        \item 名可以缩写，用首字母加点或不加点均可，如\texttt{W. Wang}或\texttt{W Wang}；
+        \item 名如果用连字符或空格隔开，如\texttt{Zhao, Lao-Liu}或\texttt{Lao Liu Zhao}，编译后显示Zhao L L，否则如\texttt{Junhao Wu}这种错误写法，只会显示为Wu J；
+        
+    \end{enumerate}
+
+    \biaoge
+    {个人责任者著录格式示例}
+    {tab:name}
+    {3}
+    {X}
+    {\textbf{原文献主要责任者} & \textbf{\textBibTeX 代码} & \textbf{参考文献著录格式}}
+    {
+    （明）李时珍 & \texttt{李时珍} & 李时珍 \\
+    （瑞士）伊迪斯•乔纳斯 & \texttt{乔纳斯} & 乔纳斯 \\
+    （美）S.昂温（Stephen Unwin） & \texttt{昂温} & 昂温 \\
+    （英）G.昂温（G. Unwin），\newline P. S. 昂温（P. S. Unwin） & \texttt{G. 昂温 and P. S. 昂温} & 昂温 G，昂温 P S \\
+    Albert Einstein & \texttt{Albert Einstein} & Einstein A \\
+    Amabel Williams-Ellis & \texttt{Amabel Williams-Ellis} & Williams-Ellis A \\
+    Augustus De Morgan & \texttt{Augustus \{De Morgan\}} & De Morgan A \\
+    Li Jiangning & \texttt{Li, Jiang Ning}或\newline \texttt{Li, Jiang-Ning} & Li J N \\
+    }
+
+    \begin{enumerate}[kuohao, resume]
+        \item 欧美著者的中译名只著录其姓（同姓不同名的欧美著者，需著录其名的首字母），如表\ref{tab:name}所示；
+        \item 著作方式相同的责任者不超过3个时，全部照录。超过3个时，著录前3个责任者。在代码中既可以列出全部作者，也可以在第三个作者之后用\texttt{and others}省略。无论哪种写法，编译器都将自动在其后加“，等”或与之相应的词，如表\ref{tab:omit}所示。
+        \item 无责任者或者责任者情况不明的文献可省略此项，直接著录题名。
+    \end{enumerate}
+
+    \biaoge
+    {多责任者著录格式示例}
+    {tab:omit}
+    {2}
+    {X}
+    {\textbf{\textBibTeX 代码} & \textbf{参考文献著录格式}}
+    {%
+    \texttt{钱学森 and 刘再复}	& 钱学森，刘再复\\
+    \texttt{李四光 and 华罗庚 and 茅以升} & 李四光，华罗庚，茅以升\\
+    \texttt{印森林 and 吴胜和 and 李俊飞 and 冯文杰} & 印森林，吴胜和，李俊飞，等\\
+    \texttt{印森林 and 吴胜和 and 李俊飞 and others} & 印森林，吴胜和，李俊飞，等\\
+    \texttt{Evenst W. Fordham and Amiad Ali and David A. Turner and John R. Charters} & Fordham E W, Ali A, Turner D A, et al.\\
+    }
+
+    \item 题名包括书名、刊名、报纸名、专利题名、报告名、标准名、学位论文名、档案名、舆图名、析出的文献名等，题名后往往使用“[ ]”符号标识文献类型的标识代码和电子资源文献载体的标识代码，如：[M/OL]，标识文献类型是普通图书，文献载体是联机网络，即网上图书。表\ref{tab:atref}列出了文献类型所对应的标识代码及电子资源载体的标识代码与\textBibTeX 中\verb|entrytype|的对应关系。
+
+    \biaoge
+    {文献类型和标识代码}
+    {tab:atref}
+    {3}
+    {Y}
+    {\textbf{类型简称} & \textbf{中文含义} & \textbf{\textBibTeX 中的\texttt{entrytype}}}
+    {%
+    \,[M] & 普通图书 & \texttt{@book}\cite{book_example1,book_example2,book_example3,online_book_example1} \\
+    \,[C] & 会议录 & \texttt{@proceedings}\cite{conference_example1,conference_example2} \\
+    \,[G] & 汇编 & \texttt{@collection}\cite{collection_example1,collection_example2} \\
+    \,[D] & 学位论文 & \texttt{@phdthesis}\cite{thesis_example1,thesis_example2,thesis_example3}\\
+    \,[R] & 报告 & \texttt{@techreport}\cite{report_example1,report_example2,report_example3} \\
+    \,[P] & 专利 & \texttt{@patent}\cite{patent_example1,patent_example2}\\
+    \,[S] & 标准 & \texttt{@standard}\cite{standard_example1,standard_example2} \\
+    
+    \,[M] & 丛书析出文献 & \texttt{@inbook}\cite{inbook_example1,inbook_example2} \\
+    \,[C] & 会议集的析出文献 & \texttt{@inproceedings}\cite{inconference_example1,inconference_example2} \\
+    
+    \,[J] & 连续出版物-期刊 & \texttt{@periodical}\cite{periodical_example1,periodical_example2,periodical_example3} \\
+    
+    \,[J] & 期刊 & \texttt{@article}\cite{journal_example1,journal_example2,online_journal_example1} \\
+    \,[N] & 报纸 & \texttt{@newspaper}\cite{news_example1,news_example2,online_news_example1} \\
+    
+    \,[EB] & 电子公告 & \texttt{@online}\\
+    \,[DB] & 数据库 & \texttt{@database}\cite{dbmt}\\
+    \,[CP] & 计算机程序 & \texttt{@software}\\
+    \,[A] & 档案 & \texttt{@archive}\\
+    \,[CM] & 舆图 & \texttt{@map}\\
+    \,[DS] & 数据集 & \texttt{@dataset}\\
+    \,[Z] & 其他文献 & \texttt{@misc} \\
+    }
+
+    基于对biblatex-gb7714-2025宏包的修改，实现了英文参考文献中的标点符号均采用半角；中文参考文献中的标点符号（除括号外）均采用全角\footnote{见刘佩勇老师的注释。}。
+
+\end{enumerate}
+
+\begin{enumerate}[shuzi, resume]
+    \item 专著是以单行本或多卷册（在限定的期限内出齐）形式出版的出版物，包括普通图书[M]、古籍[M]、多卷书[M]、丛书[M]、会议文集[C]、汇编[G]、学位论文[D]、报告[R]、专利[P]、标准[S]等，其著录格式为：
+
+    主要责任者. 提名: 其他题目信息[文献类型标识/文献载体标识]. 其他责任者. 版本项. 出版地: 出版者, 出版年: 引文页码[引用日期]. 获取和访问路径. 数字对象唯一标识符.
+
+    示例：
+
+    \begin{enumerate}[quan]
+        \item 文献是图书时，著录格式见\parencite{book_example1,book_example2,book_example3}。
+        \item 文献是会议论文集时，著录格式见\parencite{conference_example1,conference_example2}。
+        \item 文献是汇编时，著录格式见\parencite{collection_example1,collection_example2}。
+        \item 文献是学位论文时，著录格式见\parencite{thesis_example1,thesis_example2,thesis_example3}。注意\verb|entrytype|务必使用\verb|@phdthesis|，而不要选择\verb|@mastersthesis|，后者存在bug，或致文献类型标识[D]不显示。
+        \item 文献是来自报告时，著录格式见\parencite{report_example1,report_example2,report_example3}。值得一提的是，在文献\parencite{report_example2}一例中，主要责任者是机构而非人名，则需要用一对花括号围起来，防止\textBibTeX 将之缩写。
+        \item 文献是来自专利时，著录格式见\parencite{patent_example1,patent_example2}。
+        \item 文献是来自国际、国家标准时，著录格式见\parencite{standard_example1,standard_example2}。
+    \end{enumerate}
+    
+    \item 专著中的析出文献是指从整个专著中析出的具有独立篇名的文献，典型的析出文献包括论文集中的某一篇文章、丛书中的某一卷书等，其著录格式为：
+
+    析出文献主要责任者. 析出文献题名[文献类型标识/文献载体标识]. 析出文献其他责任者//专著主要责任者. 专著题名:其他题名信息. 版本项. 出版地: 出版者, 出版年: 析出文献的页码[引用日期]. 获取和访问路径. 数字对象唯一标识符.
+
+    示例：
+
+    \begin{enumerate}[quan]
+        \item 文献是丛书析出文献时，著录格式见\parencite{inbook_example1,inbook_example2}。
+        \item 文献是会议集的析出文献时，著录格式见\parencite{inconference_example1,inconference_example2}。
+    \end{enumerate}
+    
+    \item 连续出版物通常是计划无限期连续出版发行的出版物，通常载有年卷期号或年 月 日 顺序号，期刊[J]、报纸[N]是典型的连续出版物，其著录格式为：
+
+    主要责任者. 题名: 其他题名信息[文献类型标识/文献载体标识]. 年, 卷(期)-年, 卷(期). 出版地: 出版者, 出版年[引用日期]. 获取和访问路径. 数字对象唯一标识符.
+
+    连续出版物及析出文献有其特殊性，像期刊或杂志这类持续更新的整体出版物，著录格式见\parencite{periodical_example1,periodical_example2,periodical_example3}。
+
+    但对于报纸文章（如《人民日报》的某篇报道），虽然从出版形式上属于连续出版物，但按照析出文献处理。
+
+    \item 连续出版物中的析出文献，一般是指从连续出版物中析出的具有独立篇名的文献。例如，期刊中的某一篇文章，其著录格式为：
+
+    析出文献主要责任者. 析出文献题名[文献类型标识/文献载体标识]. 连续出版物题名: 其他题名信息, 年, 卷(期): 页码[引用日期]. 获取和访问路径. 数字对象唯一标识符.
+
+    示例：
+
+    \begin{enumerate}[quan]
+        \item 文献是期刊的析出文献时，著录格式见\parencite{journal_example1,journal_example2}
+        \item 文献是报纸的析出文献时，著录格式见\parencite{news_example1,news_example2}。
+    \end{enumerate}
+
+\item 更多类型，包括数据库（database）标识符（DB）、数据集（dataset）标识符（DS）、软件（software）标识符（CP）及舆图（map）标识符（CM）等，其\verb|entrytype|请查阅表\ref{tab:atref}。
+
+\item 文献来自电子文献时，著录格式为:
+
+    作者. 文献题目[文献类型标识/文献载体标识]. 电子文献的可获取地址, 发表或更新日期/引用日期（可以只选择一项）.
+
+    电子文献载体标识见表\ref{tab:carrier}。在\textBibTeX 中，可以使用\verb|medium|域指定载体标识。
+
+    \biaoge
+    {电子资源载体和标识代码}
+    {tab:carrier}
+    {2}
+    {Y}
+    {\textbf{标识代码} & \textbf{电子资源的载体类型}}
+    {%
+    \,[OL] & 联机网络（online）\cite{online_book_example1,online_journal_example1,online_news_example1} \\
+    \,[MT] & 磁带（magnetictape）\cite{dbmt} \\
+    \,[CD] & 光盘（CD-ROM） \\
+    \,[DK] & 磁盘（disk） \\
+    }
+    
+    典型的电子参考文献标识有：
+    
+    [DB/OL]——联机网上数据库(database online)
+    
+    [DB/MT]——磁带数据库(database on magnetic tape)
+    
+    [M/CD] ——光盘图书(monograph on CD-ROM)
+    
+    [CP/DK]——磁盘软件(computer program on disk)
+    
+    [J/OL] ——网上期刊(serial online)
+    
+    [EB/OL]——网上电子公告(electronic bulletin board online)
+
+    这里给出几个示例：网络丛书[M/OL]：\parencite{online_book_example1}；网络期刊[J/OL]：\parencite{online_journal_example1}；网络报纸[N/OL]：\parencite{online_news_example1}；磁带数据库[DB/MT]：\parencite{dbmt}。
+    
+\end{enumerate}
+
+\section{引文标注}
+
+\textbf{各级标题不得使用引文标示。}
+
+论文中引用的文献的标注方法遵照GB/T 7714—2005，采用顺序编码制，即按正文中引用的文献出现的先后顺序连续编码，将序号置于方括号中。例如引用单篇文献时，采用方括号上标的形式置于所引内容最末句的右上角，方法是\verb|\cite{}|，花括号内写入自定义的文献标识码，如：“\verb|……模式\cite{book_example3}|”编译得到“……模式\cite{book_example3}”；同一处引用多篇文献时，应将各篇文献的自定义标识码在花括号内全部列出，各序号间用半角逗号“,”分隔，如：“\verb|……的研究\cite{book_example2,conferenc|\\
+\verb|e_example1,thesis_example1}|”编译得到“……的研究\cite{book_example2, conference_example1,collection_example2}”；如遇连续序号，起讫序号间所有文献的自定义标识码都应该填入花括号，如：“\verb|……的研究\cite{confer|\\
+\verb|ence_example1,conference_example2,collection_example1,collection_exampl|\\
+\verb|e2}|”编译得到“……的研究\cite{conference_example1,conference_example2,collection_example1,collection_example2}”。
+
+正文中如需对引文进行阐述时，应使用\verb|\parencite{}|命令代替\verb|\cite{}|命令，且用法不变，如：“\verb|文献\parencite{book_example1,book_example2,collection_|\\
+\verb|example1,collection_example2,thesis_example1,thesis_example2}从不同角度|\\
+\verb|阐述了……|”编译得到“文献\parencite{book_example1,book_example2,collection_example1,collection_example2,thesis_example1,thesis_example2}从不同角度阐述了……”。如果希望了解更多 \textBibTeX -gb7714的使用细节，请阅读\verb|参考文件/biblatex-gb7714-2015.pdf|或查看\verb|@huishidong|的GitHub仓库，\href{https://github.com/hushidong/biblatex-gb7714-2015}{\color{blue}{点此跳转}}。
+
+\section{名词术语}
+
+全文应统一科技名词术语、行业通用术语以及设备、元器件的名称。有国家标准的应采用标准中规定的术语，没有国家标准的应使用行业通用术语或名称。特定含义的名词术语或新名词应加以说明或注释。
+
+\section{数学符号和公式}\label{equation}
+
+\subsection{数字}
+
+无特别约定情况下，一般均采用阿拉伯数字表示。年份一概用4位数字表示。小数的表示方法，一般情形下，小于1的数，需在小数点之前加0。
+
+\subsection{物理量名称、符号}
+
+论文中某一物理量的名称和符号应统一，公式的物理量变量符号用斜体，物理量常量符号用正体，理应遵循GB/T 3102.11—1993《物理科学和技术中使用的数学符号》：
+\begin{enumerate}[shuzi]
+  \item 正文中的数学环境应使用\texttt{\$\$}包围，如：“\verb|$A_{italic}$、$B_\text{upright}$、|\\ \verb|$C^{中文也支持}$|”，编译得到“$A_{italic}$、$B_\text{upright}$、$C^{中文也支持}$”。
+  \item 数学常数和特殊函数名用正体，可用\verb|\symup{}|命令实现。此外，在数学环境中，用\verb|\ee|、\verb|\ii|和\verb|\jj|，分别可以快捷地打出自然底数$\ee$、虚数单位$\ii$和$\jj$。对于小写希腊字母，应在命令前加上\verb|up|使之为正体，如：$\uppi = 3.14\dots$具体请参考第4点。
+  \item 希腊字母：大写默认为正体，斜体可以通过加上\verb|it|前缀实现，如：\verb|$\Gamma$|得到$\Gamma$，而\verb|$\itGamma$|得到$\itGamma$。加粗版本则再加上\verb|bf|前缀，\verb|$\bfGamma$|和\verb|$\bfitGamma$|分别得到$\bfGamma$和$\bfitGamma$。小写默认为斜体，正体可以通过加上\verb|up|前缀实现，如：\verb|$\gamma$|得到$\gamma$，而\verb|$\upgamma$|得到$\upgamma$。加粗版本则再加上\verb|bf|前缀，\verb|$\bfgamma$|和\verb|$\bfupgamma$|分别得到$\bfgamma$和$\bfupgamma$。具体可以参考附录1第\ref{greekcommand}章。
+  \item 微分和偏微分符号用正体，可用\verb|\dd|和\verb|\partial|分别打出$\dd$和$\partial$。有限增量符号$\increment$也固定使用正体（ISO标准，U+2206），须使用\verb|\increment|命令获得。建议不要使用\verb|$\upDelta$|得到的$\upDelta$（U+0394）。
+  \item 特殊集合符号应使用粗正体（\verb|\symbfup{}|），如：$x\in\symbfup{R}$，也可以使用空心正体（板粗体）\verb|\mathbb{}|，效果：$\mathbb{R}$。
+  \item 向量、矩阵和张量用粗斜体（\verb|\symbfit{}|），如 ：$\symbfit{x}$、$\symbfit{\Sigma}$、$\symbfit{T}$。
+  \item 积分符号应直立，在数学环境中：\verb|\int_a^b|获得“$\int_a^b$”，二/三/多重积分可以使用\verb|\iint|、\verb|\iiint|和\verb|\idotsint|获得“$\iint$”“$\iiint$”和“$\idotsint$”。环路积分命令包括\verb|\oint|（$\oint$）、\verb|\oiint|（$\oiint$）和\verb|\oiiint|（$\oiiint$）。
+  \item 自然对数用 $\ln x$ 不用 $\log x$。
+  \item 实部$\Re$和虚部$\Im$的字体使用罗马体，分别用\verb|$\Re$|和\verb|$\Im$|即可获得。
+  \item Nabla算子使用粗正体，可以用\verb|$\mbfnabla$|编译得到$\mbfnabla$。
+  \item 提供波浪线\footnote{\texttt{\textbackslash blx}采用U+FF5E字符，不使用\texttt{\textbackslash textasciitilde}编译得到的“\textasciitilde”。区别在于前者为符合《中华人民共和国国家标准标点符号用法》4.13.1规定的一字宽，而后者非然。}和省略号的快捷命令，如：“\verb|1\blx 2个|”编译得到“1\blx 2个”；“\verb|未完|\\ \verb|待续\slh|”编译得到“未完待续\slh”。
+\end{enumerate}
+
+\subsection{公式}
+
+公式应另起一行居中，推荐使用 \verb|equation| 环境进行排版。例如：
+\begin{verbatim}
+\begin{equation}
+E = mc^2.
+\end{equation}
+\end{verbatim}
+编译得到
+\begin{equation}\label{eq:C2E1}
+E = mc^2.
+\end{equation}
+
+该命令对公式自动按章节编号编排，例如第2章第1个公式编号为\eqref{eq:C2E1}，并默认将编号放置在公式右侧的行末。如果不需要编号的公式，应使用\verb|equation*| 环境。若需在公式中插入正体英文，应使用 \verb|\text{}| 命令，如：
+\begin{verbatim}
+\begin{equation*}
+F = G \frac{m_1 m_2}{r^2}, \quad \text{where }G\text{ is the gravitational constant.}
+\end{equation*}
+\end{verbatim}
+编译得到
+\begin{equation*}
+F = G \frac{m_1 m_2}{r^2}, \quad \text{where }G\text{ is the gravitational constant.}
+\end{equation*}
+
+公式中上标和下标的字母、数字和符号，应排列清晰、位置准确。例如：
+\begin{verbatim}
+\begin{equation*}
+    a_n = x_{不在集合中的}^{2+i}.
+\end{equation*}
+\end{verbatim}
+编译得到
+\begin{equation*}
+a_n = x_{不在集合中的}^{2+i}.
+\end{equation*}
+
+长公式需要换行时，推荐在\verb|equation|环境中嵌套\verb|aligned|环境，可以实现按等号对齐的多行排版，有以下建议：
+\begin{itemize}
+  \item 若在等号（$=$）前换行，等号应置于换行后的行首。
+  \item 若在运算符（$+$、$-$、$\times$、$\div$）处换行，换行后的运算符应对齐等号。
+  \item 使用\verb|\notag|命令可避免对某行编号。
+  \item 不建议直接使用\verb|align|和\verb|align*|环境，可能导致间距异常。
+\end{itemize}例如：
+\begin{verbatim}
+\begin{equation}
+\begin{aligned}
+S &= a + b + c + d + e + f + g + h + i \notag \\
+   &+ j + k + l + m + n + o + p + q \notag \\
+   &= r + s + t + u + v + w + x + y + z.
+\end{aligned}
+\end{equation}
+\end{verbatim}
+编译得到
+\begin{equation}
+\begin{aligned}
+S &= a + b + c + d + e + f + g + h + i \notag \\
+  &+ j + k + l + m + n + o + p + q \notag \\
+  &= r + s + t + u + v + w + x + y + z.
+\end{aligned}
+\end{equation}
+
+引用公式时，应在公式中用\verb|\label{}|加入标签：
+
+\begin{verbatim}
+\begin{equation}\label{eq:newton}
+F = ma.
+\end{equation}
+\end{verbatim}
+编译得到
+\begin{equation}\label{eq:newton}
+F = ma.
+\end{equation}
+
+然后使用 \verb|\eqref{}| 命令：
+
+\begin{verbatim}
+如公式\eqref{eq:newton}所示，……
+\end{verbatim}
+编译得到
+
+如公式\eqref{eq:newton}所示，……
+
+显然，\verb|\eqref{}|会自动生成带括号的公式编号(x.x)。
+
+\subsection{计量单位}
+
+一律采用国务院发布的《中华人民共和国法定计量单位》，单位名称和符号的书写方式，应采用国际通用符号，且所有计量单位符号均用正体，如毫克每升用“\unit{\mg\per\liter}”。在不涉及具体数据表达时允许使用中文计量单位如“千克”。表达时刻应采用中文计量单位，如：“下午3点10分”，不能写成“\qty{3}{\hour} \qty{10}{\min}”。在表格中可以用“3:10PM”表示。单位中表示“千”的k不能大写，必须小写，如：\unit{\kilogram}、\unit{\kilo\metre}、\unit{\kilo\hertz}等。
+
+本模板引入\verb|siunitx|宏包，一个快速的上手教程如下，更详细的\verb|siunitx|宏包使用细节请阅读\verb|参考文件/siunitex_ZH_CN.pdf|\footnote{感谢赣医一附院神经内科黄旭华的翻译。}。
+
+\subsubsection{数字格式化}
+
+\begin{itemize}
+  \item \verb|\num{1234512345.6789}| $\rightarrow$ \num{1234512345.6789}：显示长数字。
+  \item \verb|\num{-19.7}| $\rightarrow$ \num{-19.7}：显示负号。
+  \item \verb|\num{1.234567e-8}| $\rightarrow$ \num{1.234567e-8}：以科学计数法显示数字。
+  \item \verb|\num{1.234(5)}| $\rightarrow$ \num{1.234(5)}：显示带有不确定度的数字。
+  \item \verb|\num[parse-numbers=false]{\$19,456.82}| $\rightarrow$ \num[parse-numbers=false]{\$19,456.82}：显示一个货币金额，并将其解释为一个字符串，而不是数字。
+  \item \verb|\numproduct{9.624 x 8.18 x 1.745| $\rightarrow$ \numproduct{9.624 x 8.18 x 1.745}：显示乘积表达式。
+  \item \verb|\complexnum{1+-2i}| $\rightarrow$ \complexnum{1+-2i}：显示复数。
+\end{itemize}
+
+\subsubsection{单位格式化}
+
+\begin{itemize}
+  \item \verb|\unit{\kilogram\metre\per\second}| $\rightarrow$ \unit{\kilogram\metre\per\second}。
+  \item \verb|\unit{kg.m.s^{-1}}| $\rightarrow$ \unit{kg.m.s^{-1}}。
+\end{itemize}
+
+\subsubsection{数字和单位组合}
+
+\begin{itemize}
+  \item \verb|\qty{5.5}{\milli\gram\per\liter}| $\rightarrow$ \qty{5.5}{\milli\gram\per\liter}。
+  \item \verb|\qty{23.5}{\newton\metre}| $\rightarrow$ \qty{23.5}{\newton\metre}。
+  \item \verb|\qty{1200}{\watt\per\square\metre}| $\rightarrow$ \qty{1200}{\watt\per\square\metre}。
+  \item \verb|\qty{25}{\celsius}| $\rightarrow$ \qty{25}{\celsius}。
+\end{itemize}
+
+\subsubsection{表示并列或范围}
+
+\begin{itemize}
+  \item \verb|\qtylist{1;2;3}{\milli\gram}| $\rightarrow$ \qtylist{1;2;3}{\milli\gram}。
+  \item \verb|\qtyrange{0.1}{1.0}{\micro\mole}| $\rightarrow$ \qtyrange{0.1}{1.0}{\micro\mole}。
+\end{itemize}
+
+\subsubsection{为单位自定义快捷命令}
+
+例如为“\unit{\mg\per\liter}”定义一条快捷命令\verb|\mgl|，需在使用前声明：
+\begin{verbatim}
+    \DeclareSIUnit{\mgl}{\milli\gram\per\liter}
+\end{verbatim}
+\DeclareSIUnit{\mgl}{\milli\gram\per\liter}
+
+效果：\verb|\qty{5.0}{\mgl}| $\rightarrow$ \qty{5.0}{\mgl}
+
+\section{表格}
+
+每一个表格都应有表标题和表序号。表序号一般按章编排，如第2章第4个表的序号为“表2.4”。表标题和表序之间应空一汉字宽度，表标题中不能使用标点符号，表标题和表序号居中置于表上方。所有表名称及表注均不需要英文对照。引用表格应在表标题的右上角加引文序号。
+
+无特殊情况下，表与表标题、表序号为一个整体，不得拆开排版为两页。若一页无法显示，可采用在第二页添加“续表x.xx”方式进行。当页空白不够排版该表整体时，可将其后文字部分提前，将表移至次页最前面。统计表一律采用三线表的标准格式，\textbf{表格宽度与文字宽度一致}。
+
+表单元格中的文字一般应居中书写（垂直、左右均居中），不宜左右居中书写的，可采取两端对齐的方式书写。
+
+\subsection{表格基本框架}
+
+推荐使用本模板自定义的表格命令\verb|\biaoge|，其基本框架为：
+
+\begin{verbatim}
+\biaoge
+{<表名>}{<标签>}{<列数>}{<列类型>}
+{表头1 & 表头2 & 表头3}
+{A & B & C \\
+D & E & F \\
+G & H & I \\}
+\end{verbatim}
+
+其中，列数为阿拉伯数字，列类型可以使用\verb|X|（两端对齐）或\verb|Y|（居中对齐）。
+
+\subsection{表格的跨页}
+
+\verb|\biaoge|命令支持自动跨页，且在跨页后会重复表头并加上“续表x.xx”。需强调的是，除非表格总高度已经大于页面总高度，否则应将其后文字部分提前，将表移至次页最前面。
+
+\subsection{手动指定列宽}
+
+一般情况下，\verb|\biaoge|命令将根据内容自动分配列宽，但如果单一单元格内\textbf{文本过长}，有时结果可能并不喜人。此时可以使用\verb|\sdbiaoge|命令，其基本框架是：
+
+\begin{verbatim}
+\sdbiaoge
+{<表名>}{<标签>}
+{<列1类型>{<列1宽度>}<列2类型>{<列2宽度>}<列3类型>{<列3宽度>}...}
+{表头1 & 表头2 & 表头3}
+{A & B & C \\
+D & E & F \\
+G & H & I \\}
+\end{verbatim}
+其中，列类型可以使用\verb|m|（两端对齐）或\verb|n|（左右居中）。列宽度建议使用\verb|pt|作为单位，如：\verb|n{147pt}n{147pt}n{147pt}|，使用时保证所有\verb|n|中的\verb|pt|数相加和约为441。随着列数与内容的不同，总和会有细微差异（很折磨人），\textbf{请手动精调至表格宽度等于文本宽度（与页眉横线对齐即可），否则续表标题无法居中}。除非自动列宽的\verb|\biaoge|命令的效果实在太差，否则不建议使用此命令。
+
+\subsection{单元格内手动换行与对齐}
+两种表格环境均会在合适的位置自动断行，但如果效果不好，也可以在指定位置断行，方法是将需要手动断行的单元格内容用\verb|\makecell[<对齐参数>]{}|包围，对齐参数可选\verb|l|（两端对齐）或\verb|c|（居中对齐），然后在需要断行处加上\verb|\\|，例如下面这个表格，因为部分单元格内容过长，因此选择手动指定列宽的\verb|sdbiaoge|命令：
+
+\begin{verbatim}
+\sdbiaoge
+{表格换行与对齐示例}{tab:makecell}{n{8cm}n{6.7cm}}
+{晨起感恩词 & 刘佩勇老师}
+{感恩天地滋养万物 & \makecell[l]{我跟别人对齐方式不一样} \\
+感恩圣贤慈悲智慧；感恩国家培养护佑；感恩父母养育之恩；感恩亲朋好友相伴；感恩母校祝我成长；
+感恩老师辛勤教导；感恩同学关心帮助；感恩农夫辛勤劳作；感恩食物滋养我身
+& 这里是为了体现\textbf{自动}换行功能 \\
+\makecell[c]{感恩所有曾经给予过我\\帮助、信任和支持的人；感恩生命中所有的遇见！} & 这里是为了体现\textbf{手动}换行功能 \\}
+\end{verbatim}
+编译得到
+
+\sdbiaoge
+{表格换行与对齐示例}{tab:makecell}{n{8cm}n{6.7cm}}
+{晨起感恩词 & 刘佩勇老师}
+{感恩天地滋养万物 & \makecell[l]{我跟别人对齐方式不一样} \\
+感恩圣贤慈悲智慧；感恩国家培养护佑；感恩父母养育之恩；感恩亲朋好友相伴；感恩母校祝我成长；
+感恩老师辛勤教导；感恩同学关心帮助；感恩农夫辛勤劳作；感恩食物滋养我身
+& 这里是为了体现\textbf{自动}换行功能 \\
+\makecell[c]{感恩所有曾经给予过我\\帮助、信任和支持的人；感恩生命中所有的遇见！} & 这里是为了体现\textbf{手动}换行功能 \\}
+
+聪明的你一定已经发现，\verb|\makecell|也可用于实现个别单元格采用不同对齐方式。
+
+\subsection{表注}
+
+表注不需要首行缩进，可使用\verb|\biaozhu{}|命令在表格下方添加注释，如：
+
+\begin{verbatim}
+\biaoge
+{表注示例}{tab:note}{2}{Y}
+{自强不息 & 知行合一}
+{笃志近思 & 厚德敦行\\}
+\biaozhu{注：这是一段注释。}
+\end{verbatim}
+编译得到
+
+\biaoge
+{表注示例}{tab:note}{2}{Y}
+{自强不息 & 知行合一}
+{笃志近思 & 厚德敦行\\}
+\biaozhu{注：这是一段注释。}
+
+\subsection{表格的引用}\label{tablecite}
+
+在需要引用的位置使用\verb|\ref{}|命令，括号内写上欲引用表格的标签，如：“\verb|表\ref{tab:makecell}展示了……|”编译得到“表\ref{tab:makecell}展示了……”。
+
+\subsection{行/列的合并}
+
+\verb|\multirow{行数}{*}{内容}|可以让某列从某行开始计算的若干行合并居中。
+
+\begin{verbatim}
+\biaoge
+{多行合并示例}
+{tab:merge}{Y}{菌株名称 & 基因型}
+{\multirow{4}{*}{\textit{DH5$\upalpha$}} & F$^-$ $\upvarphi$80d\textit{lacZ}$\Delta$M15 $\Delta$(\textit{lacZYA-argF}) \\
+       & U169 \textit{recA}1 \textit{endA}1 \textit{hsdR}17 \\
+       & (rK$^-$ mK$^+$) \textit{phoA} \textit{supE}44 $\uplambda^-$ \textit{thi}-1 \\
+       & \textit{gyrA}96 \textit{relA}1 \\
+WM3064 & \textit{thrB}1004 \textit{pro} \textit{thi} \textit{rpsL} \textit{hsdS} \\}
+\end{verbatim}
+编译得到
+
+\biaoge
+{多行合并示例}
+{tab:merge}{2}{Y}{菌株名称 & 基因型}
+{\multirow{4}{*}{\textit{DH5$\upalpha$}} & F$^-$ $\upvarphi$80d\textit{lacZ}$\Delta$M15 $\Delta$(\textit{lacZYA-argF}) \\
+       &  U169 \textit{recA}1 \textit{endA}1 \textit{hsdR}17 \\
+       & (rK$^-$ mK$^+$) \textit{phoA} \textit{supE}44 $\uplambda^-$ \textit{thi}-1 \\
+       & \textit{gyrA}96 \textit{relA}1 \\
+WM3064 & \textit{thrB}1004 \textit{pro} \textit{thi} \textit{rpsL} \textit{hsdS} \\}
+
+注意，在跨页时，合并的内容不会重复显示，因此请手动调整至不会引起歧义，必要时可以加上辅助线，推荐使用\verb|\hline|或\verb|\cmidrule(lr){起始列-结束列}|。
+
+类似地，可以用\verb|\multicolumn{列数}{*}{内容}|实现列的合并，这里不多赘述。
+
+\section{图}\label{figure}
+
+插图应与文字内容相符，技术内容正确。所有制图应符合国家标准和专业标准。对无规定符号的图形应采用该行业的常用画法。
+
+每幅插图应有图标题和图序号。图序号按章编排，如第1章第4幅插图序号为“图1.4”。图序号之后空一汉字宽度写图标题，图序号和图标题居中置于图下方。引用图应在图标题右上角标注引文序号。图中若有分图，分图号以图注形式置于图标题之下。
+
+图中的各部分中文或数字标示应置于图标题之上，且字号不得大于正文字号。
+
+图与图标题、图序号为一个整体，一个图标题下图片过多，若一页无法显示，可采用在第二页添加“图x.xx（续）”方式进行。当页空白不够排版该图整体时，可将其后文字部分提前，将图移至次页最前面。
+
+论文中所有图名称及图注均不需要英文对照，字号统一用五号字，所有的英文和数字均采用“Times New Roman”字体。
+
+图不加边框，无背景颜色。大小适中，对坐标轴必须用文字标识物理量名称，有数字标注的坐标图必须注明坐标单位（均采用国际标准单位及表示方法，不要打“/”而要用点乘，如毫克每升用“\unit{\milli\gram\per\liter}”），放在坐标名称后面用括号标出，坐标名称放到坐标轴居中位置。
+
+\subsection{图的基本框架}
+
+图片通常在 \verb|figure| 环境中使用 \verb|\includegraphics| 插入，如：
+
+例如：
+
+\begin{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.999\textwidth]{fig/mice.png}
+    \caption{实验小鼠的基本情况}
+    \label{fig:mice}
+\end{figure}\tuzhu % 如果下一个内容是章节命令，则与其之间不能有空行
+\end{verbatim}
+编译得到
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.999\textwidth]{fig/mice.png}
+    \caption{实验小鼠的基本情况}
+    \label{fig:mice}
+\end{figure}\tuzhu
+\subsection{图注} % 章节命令与\tuzhu之间无空行
+
+图注不需要首行缩进，应使用\verb|\tuzhu|命令，放置在\verb|figure|环境的后面，例如：
+
+\begin{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13.54cm]{fig/wb.png}
+    \caption{XXX基因电泳凝胶图}
+    \label{fig:wb}
+\end{figure}\tuzhu{注：A. XXX，1. X；2. X；3. X；4. X；5. X；6. X。B. XXX，1. X；2. X；3. X；4. X。}
+\end{verbatim}
+编译得到
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13.54cm]{fig/wb.png}
+    \caption{XXX基因电泳凝胶图}
+    \label{fig:wb}
+\end{figure}\tuzhu
+
+当不需要图注时，也应该保留\verb|\tuzhu|（不要带\verb|{}|），如图\ref{fig:mice}的结构那样。必须注意一点：\textbf{\texttt{\textbackslash tuzhu}之后如果紧接的是章节命令（如\texttt{\textbackslash section、\textbackslash subsection}\slh），则两者之间不能有空行}，否则行距会出现异常。
+
+\subsection{图的跨页}
+
+对于跨页的图，请预先拆成两个图，在两页分别插入。对于跨页后的图，应将\verb|\caption{}|替换为\verb|\xucaption{<原图标签>}|，例如：
+
+\begin{verbatim}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13.54cm]{fig/wb续图.png}
+    \xucaption{fig:wb}
+\end{figure}\tuzhu{注：胶图marker标注可仿照此图。}
+\end{verbatim}
+编译得到
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=13.54cm]{fig/wb续图.png}
+    \xucaption{fig:wb}
+\end{figure}\tuzhu{注：胶图marker标注可仿照此图。}
+建议矢量图片使用 PDF 格式；照片使用 JPG 格式；其他的栅格图应使用无损的 PNG 格式。注意，\LaTeX 不支持 TIFF 格式；EPS 格式已经过时。
+\section{注释} % 与\tuzhu之间无空行
+
+注释是对论文中特定名词或新名词的注解。注释可用页末注或篇末注的一种。页末注应在注释与正文之间加细线分隔，线宽度为1磅，线的长度不应超过纸张的三分之一宽度。同一页内列出多个注释的，应根据注释的先后顺序编排序号。
+
+注释序号以“\quan{1}、\quan{2}”等数字形式标示在被注释词条的右上角。页末或篇末注释条目的序号应按照“\quan{1}、\quan{2}”等数字形式与被注释词条保持一致。
+
+本模板仅提供页末注的支持，可以在需要注释的地方使用\verb|\footnote{}|命令，例如：\verb|\footnote{这是一个脚注示例。}|编译得到\footnote{这是一个脚注示例。}。
+
+用户可以在\verb|settings/other.tex|中设置页末注的计数行为，可选累计计数或每页重新计数，默认为累计计数。
+
+\section{结论}
+
+应该在正文最后一章，以（1）、（2）、（3）\slh 的形式列出，推荐使用\verb|\begin{enume|\\
+\verb|rate}[kuohao]...\end{enumerate}|环境。
+
+\section{附录}
+
+论文附录包括“附录1：中文译文”和“附录2：外文原文”。
+
+附录1在\verb|\data\appendix01.tex|中撰写，应包括作者信息页、中文摘要、中文关键词、英文摘要、英文关键词及正文。下面给出具体说明。
+
+\subsection{附录1}
+
+\subsubsection{附录1作者信息页}
+
+使用\verb|\ftitle{}|命令填写英文文献翻译后的中文标题，再用\verb|\fauthor{}|列出作者姓名，其中在作者姓名后使用\verb|\thanksA{<数字编号>}|标注上标，在单位列表中用\verb|\thanksB{<对应数字编号>}|给出对应机构与地址；在需要标记通讯作者的名字后添加\verb|\corrauth|，并用\verb|\corrinfo{邮箱}|指定联系邮箱。
+
+\subsubsection{附录1摘要}
+
+使用\verb|cfabstract|环境和\verb|\cfkeywords{}|命令分别添加中文摘要与关键词，再用\verb|efabstract|环境及\verb|\efkeywords{}|分别插入英文摘要与关键词。
+
+\subsubsection{附录1正文}
+
+附录1正文所有内容的格式，包括各章、节、条、图、表、公式在内，要求均同前文，但命令不同于前。相比之前的命令，应增加一个\texttt{f}前缀，依次用\verb|\fchapter{}|、\verb|\fsection{}|、\verb|\fsubsection{}|、\verb|\fsubsubsection{}|创建章节和小节，图像环境为\verb|ffigure|，表格命令为\verb|\ftable|，公式环境为\verb|fequation|和\verb|falign|。如上即可自动实现按附录编号格式输出所有标题、图表和公式。值得一提的是，不编号的公式应继续使用\verb|equation*|环境，而没有\verb|fequation*|这个环境。如需多行对齐，也应嵌套\verb|aligned|环境。其他所有命令，例如\verb|\ref|和\verb|\eqref|，亦皆无需改变，可以正常使用。
+
+\clearpage
+
+\subsection{附录2}
+
+该页只有页眉和题目，无页脚，纸质版外文原文PDF单独打印后放入整个论文，电子版仅有此页即可。
+
+\section{致谢}
+
+致谢在\verb|data\ack.tex|中，\verb|\ack|命令之后撰写。
+
+\section{印刷与装订顺序}
+
+毕业论文应按以下顺序装订：封面→学术声明→中文摘要→英文摘要→目录→正文→参考文献→附录→致谢
