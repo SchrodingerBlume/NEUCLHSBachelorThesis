@@ -1,0 +1,100 @@
+% !TeX encoding = UTF-8
+% !TeX program = xelatex
+% fontset = windows
+%%=================================================
+%%==   这是主文件，使用 TeXstudio 时请在此处完成编译；
+%%==   本页的内容一般无需做任何修改；
+%%==   请进入 settings 文件夹完成用户参数的配置；
+%%==   正文和附录的撰写、追加与删减，请进入 data 文件夹操作；
+%%==   图片请统一放入 fig 文件夹；
+%%==   参考文献信息请在 ref/ref.bib 文件中添加；
+%%==   祝您使用愉快！
+%%=================================================
+%%
+%% NEUCLHSBachelorThesis - 东北大学生命科学与健康学院 LaTeX 本科学位论文模板
+%% Copyright (c) 2025 [吴俊豪/Schrödingers Blume]
+%%
+%% 免责声明 (Disclaimer of Warranty)
+%% 本模板按"原样"提供，不作任何明示或暗示的担保。
+%% 使用者应自行验证模板输出是否符合所在机构的具体要求。
+%% 作者不对因使用本模板而产生的任何格式问题、提交延误或其他后果承担责任。
+%%
+%%=================================================
+%% 本模板基于以下协议发布：
+%%
+%% 1. LaTeX Project Public License (LPPL) 1.3c 或更高版本
+%%    - 这是标准的LaTeX发行协议
+%%    - 允许自由使用、修改和分发
+%%    - 要求修改后的文件使用不同文件名
+%%
+%% 3. 学术共享协议
+%%    - 学术使用：允许免费用于学术论文撰写
+%%    - 商业使用：禁止任何形式的商业用途
+%%    - 修改分发：鼓励分享改进版本，但需保留原作者署名
+%%
+%% 您需要同时遵守以上协议来使用本模板。
+%%
+%% 许可证文件：
+%% - /LICENSES/LICENSE (LaTeX Project Public License)
+%% - /LICENSES/学术共享协议
+%%
+%%=================================================
+
+\documentclass{NEUCLHSBachelorThesis}
+\include{settings/other}
+\include{settings/reference}
+\makeatletter
+\providecommand{\@table@begin}{}
+\makeatother
+\begin{document}
+\setlength{\baselineskip}{23.086043pt}
+\fontdimen2\font=0.3333em % 正常字符间距
+\fontdimen3\font=0.1111em % 字符间可拉伸空间
+\fontdimen4\font=0.0833em % 字符间可压缩空间
+\fontdimen7\font=0.1111em % 额外空间参数
+\spaceskip=0.25em plus 0.03em minus 0.07em
+\include{settings/hyphenation}
+
+\frontmatter
+\include{settings/cover}
+\include{DoNotEdit/cover}
+\setlength{\baselineskip}{23.086043pt}
+\include{settings/statement}
+\include{DoNotEdit/statement}
+\usestyleuntil{cabstract}
+\include{data/cabstract}
+\usestyleuntil{eabstract}
+\include{data/eabstract}
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyfoot[C]{}
+\fancyhead[L]{\wuhao{东北大学本科生毕业设计（论文）}}
+\fancyhead[R]{\wuhao{目录}}}
+\usestyleuntil{contents}
+\cleardoublepage
+\contents
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyfoot[C]{\wuhao-\hspace{0.25em}\thepage\hspace{0.25em}-}
+\fancyhead[L]{\wuhao{东北大学本科生毕业设计（论文）}}
+\fancyhead[R]{\wuhao{\leftmark}}}
+\usestyleuntil{plain}
+
+\mainmatter
+\setlength{\baselineskip}{23.086043pt}
+\fancypagestyle{plain}{
+\fancyhf{}
+\setlength{\footskip}{20pt} 
+\fancyfoot[C]{\wuhao-\hspace{0.25em}\thepage\hspace{0.25em}-}
+\fancyhead[L]{\wuhao{东北大学本科生毕业设计（论文）}}
+\fancyhead[R]{\wuhao{\leftmark}}}
+\include{settings/chapter}
+
+\backmatter
+\printbibliography\label{ckwx}
+\addcontentsline{toc}{chapter}{参考文献}
+\appendix
+\include{settings/appendix}
+\usestyleuntil{ack}
+\include{data/ack}
+\end{document}

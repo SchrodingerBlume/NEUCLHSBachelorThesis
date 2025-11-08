@@ -1,0 +1,15 @@
+% untilchapter.sty
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{untilchapter}[2025/07/17 v1.0 Apply pagestyle until...]
+\RequirePackage{etoolbox}
+
+\makeatletter
+\newcommand{\usestyleuntil}[1]{%
+  % 1. 切换到指定的页样式
+  \pagestyle{#1}%
+  % 2. 在出现目标命令时恢复 plain
+  \pretocmd{\usestyleuntil}{\pagestyle{plain}}{}{%
+    \PackageError{usestyleuntil}{Failed to patch \string\usestyleuntil}{}%
+  }%
+}
+\makeatother
