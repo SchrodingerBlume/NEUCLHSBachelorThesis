@@ -37,7 +37,7 @@ NEUCLHSBachelorThesis 是为东北大学生命科学与健康学院本科毕业�
 
 - **TeX 发行版：** TexLive 2025
 - **编译器：** XeLaTeX
-- **文献工具：** BibTeX
+- **文献工具：** Biber
 - **推荐平台：** Overleaf（在线编辑）
 
 ---
@@ -62,7 +62,7 @@ cd NEUCLHSBachelorThesis
 
 # 编译（按顺序执行）
 xelatex main.tex
-bibtex main
+biber main
 xelatex main.tex
 xelatex main.tex
 ```
@@ -164,19 +164,12 @@ NEUCLHSBachelorThesis/
 
 ## 📝 版本历史
 
-### V-1.0.0（2025年11月9日）- 正式版
+### V-1.0.1（2025年11月12日）
 
 ✨ **主要进展**
-- 完成从 Pre 版到正式版的跨越
-- 实现图注释系统的最终优化
-- 完善封面系统
 
-🔧 **更新内容**
-- 完全修复图注释与其他文字的间距问题
-- 增加背部大封面
-
-📋 **待完成项目**
-- 表格间距可控化
+- 修正了错误的模板使用说明
+- 修正了附录1摘要中的格式细节
 
 ### [查看完整更新日志]请阅读`更新说明.md`文件
 
