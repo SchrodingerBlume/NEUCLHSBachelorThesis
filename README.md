@@ -82,22 +82,22 @@ XeLaTeX → BibTeX → XeLaTeX → XeLaTeX
 ### 编译器设置
 
 - **主编译器：** XeLaTeX
-- **文献编译器：** BibTeX
+- **文献编译器：** Biber
 
 ### 常见 IDE 配置
 
 **TeX Studio:**
 ```
 选项 → 设置 → 构建 → 默认编译器 → XeLaTeX
-选项 → 设置 → 构建 → 默认文献工具 → BibTeX
+选项 → 设置 → 构建 → 默认文献工具 → Biber
 ```
 
 **VS Code (LaTeX Workshop):**
 ```json
 "latex-workshop.latex.recipes": [
   {
-    "name": "XeLaTeX → BibTeX → XeLaTeX × 2",
-    "tools": ["xelatex", "bibtex", "xelatex", "xelatex"]
+    "name": "XeLaTeX → Biber → XeLaTeX × 2",
+    "tools": ["xelatex", "biber", "xelatex", "xelatex"]
   }
 ]
 ```
