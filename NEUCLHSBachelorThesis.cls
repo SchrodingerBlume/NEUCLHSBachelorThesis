@@ -417,7 +417,7 @@ CJKecglue=\hskip 0.275em % 中英文标点间距
   {\fontspec{Times New Roman}\MakeUppercase{\scalebox{1.2}[1.2]{\textsubscript{\hskip -0.15em #1\hskip -0.2em}}}}%
 }
 \newcommand{\XeLaTeX}{X\textre{\reflectbox{E}}\LaTeX\xspace}
-\newcommand{\BibLaTeX}{B\textsubscript{IB}\LaTeX\xspace}
+\newcommand{\BibLaTeX}{B\textbib{IB}\LaTeX\xspace}
 \newcommand{\textBibTeX}{B\textbib{IB}\TeX\xspace}
 
 %------- 数学 -------%
@@ -1189,7 +1189,7 @@ CJKecglue=\hskip 0.275em % 中英文标点间距
 \def\efkeywords#1{
     \vskip 2em
     \begin{spacing}{1}
-      \noindent\xiaosi\textbf{Keywords:~}\xiaosi #1
+      \noindent\xiaosi\textbf{Key words:~}\xiaosi #1
     \end{spacing}
     \pagestyle{plain}
 }
