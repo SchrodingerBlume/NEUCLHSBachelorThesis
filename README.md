@@ -111,7 +111,7 @@
    - 点击本页面右上角绿色按钮 `Code` → `Download ZIP`
 
 2. **上传到 Overleaf**
-   - 访问 [TeXPage]([https://www.overleaf.com](https://www.texpage.com/))（需注册账号）
+   - 访问 [TeXPage](https://www.texpage.com/)（需注册账号）
    - 点击 `+新建` → `上传项目`
    - 上传刚刚下载的 ZIP 压缩包
 
