@@ -109,27 +109,24 @@
 
 ## 快速开始
 
-### 方式一：Overleaf在线使用（推荐）
+### 方式一：TeXPage 在线使用（推荐）
 
 **适合新手或不想安装 LaTeX 的用户**
 
 1. **下载模板**
    - 点击本页面右上角绿色按钮 `Code` → `Download ZIP`
-   - 解压下载的文件
 
 2. **上传到 Overleaf**
-   - 访问 [Overleaf](https://www.overleaf.com)（需注册账号）
-   - 点击 `New Project` → `Upload Project`
-   - 上传整个模板文件夹的 ZIP 压缩包
+   - 访问 [TeXPage]([https://www.overleaf.com](https://www.texpage.com/))（需注册账号）
+   - 点击 `+新建` → `上传项目`
+   - 上传刚刚下载的 ZIP 压缩包
 
-3. **设置编译器**
-   - 点击左上角菜单按钮
-   - 将 `Compiler` 设置为 **XeLaTeX**
+3. **编译器将自动设置为 **XeLaTeX**
 
 4. **开始编写**
    - 打开 `settings/cover.tex` 填写个人信息
    - 打开 `data/` 文件夹开始撰写论文内容
-   - 点击 `Recompile` 预览效果
+   - 点击 `编译` 预览效果
 
 ### 方式二：本地编译
 
@@ -192,7 +189,7 @@ cd NEUCLHSBachelorThesis
 2. 菜单栏：`选项` → `设置 TeXstudio` → `构建`
    - 默认编译器：`XeLaTeX`
    - 默认文献工具：`Biber`
-3. 点击绿色箭头按钮（或按 F5）编译
+3. 按 `XeLaTeX --> Biber --> XeLaTeX --> XeLaTeX` 的顺序编译
 
 **使用命令行：**
 
@@ -420,28 +417,20 @@ xelatex main
 xelatex main
 ```
 
-#### Q3: TeXstudio 编译器设置
-
-**A:**
-1. 打开 TeXstudio
-2. `选项` → `设置 TeXstudio` → `构建`
-3. 设置"默认编译器"为 **XeLaTeX**
-4. 设置"默认文献工具"为 **Biber**
-
-#### Q4: Overleaf 编译超时
+#### Q3: Overleaf 编译超时
 
 **A:**
 - Overleaf 免费版有编译时间限制
 - 解决方案：
   1. 删除不需要的章节和图片
   2. 升级到付费版
-  3. 改用本地编译
+  3. 改用 TeXPage
 
 ### 格式问题
 
-#### Q5: 页首标题与页眉横线间距异常
+#### Q4: 页首标题与页眉横线间距异常
 
-**A:** 这是已知问题，通常发生在有大量图表的页面附近。
+**A:** 这是已知问题，通常发生在有大量浮动体（图表）的页面附近。
 
 **临时解决方案：**
 在该页之前手动添加 `\clearpage` 命令。
@@ -451,78 +440,13 @@ xelatex main
 \section{下一节标题}
 ```
 
-#### Q6: 目录中的页码不对
+#### Q5: 目录中的页码不对
 
 **A:** 多编译几次（至少 2 次），LaTeX 需要多次编译来更新交叉引用。
 
-### 使用问题
-
-#### Q7: 如何添加新的章节？
-
-**A:**
-1. 在 `data/` 文件夹创建新文件，如 `chap03.tex`
-2. 在 `settings/chapter.tex` 中添加：`\input{data/chap03}`
-
-#### Q8: 如何修改封面信息？
-
-**A:** 编辑 `settings/cover.tex` 文件，修改相应的命令参数。
-
-#### Q9: 参考文献格式不对
-
-**A:**
-- 确保使用 Biber 编译（参见 Q2）
-- 检查 `references.bib` 中的条目格式是否正确
-- 参考 `参考文件/biblatex-gb7714-2015.pdf` 了解详细格式要求
-
-#### Q10: 表格中不能使用 `\verb` 命令
+#### Q6: 表格中不能使用 `\verb` 命令
 
 **A:** 这是 `\sdbiaoge` 命令的已知限制。
-
-**替代方案：**
-使用 `\texttt{}` 命令代替 `\verb`。
-
-#### Q11: 双面打印模式下有空白页
-
-**A:** 这是正常的，符合排版规范。
-
-- 关闭空白页：将 `settings/printmode.tex` 中的 `\def\PrintMode{twoside}` 改为 `oneside`
-
-### 高级问题
-
-#### Q12: 如何自定义单位？
-
-**A:** 在 `settings/siunit.tex` 中添加：
-
-```latex
-\DeclareSIUnit\rpm{r.minu{-1}}  % 转每分钟
-```
-
-使用：
-```latex
-转速为 \qty{3000}{\rpm}
-```
-
-#### Q13: 如何调整超链接颜色？
-
-**A:** 编辑 `settings/hyperref.tex`：
-
-```latex
-\hypersetup{
-  colorlinks=true,
-  linkcolor=blue,    % 内部链接颜色
-  citecolor=green,   % 引用链接颜色
-  urlcolor=red       % URL 颜色
-}
-```
-
-#### Q14: 如何让脚注每页重新编号？
-
-**A:** 编辑 `settings/footnotecounter.tex`：
-
-```latex
-\footnoteCounterEachPagetrue   % 每页重新编号
-% \footnoteCounterEachPagefalse  % 全文连续编号
-```
 
 ---
 
@@ -618,10 +542,10 @@ xelatex main
 
 ### 相关项目
 
-本模板在开发过程中参考了以下优秀项目：
+本模板在开发过程中主要参考了以下（但不限于）优秀项目：
 
 - [ThuThesis](https://github.com/tuna/thuthesis) - 清华大学学位论文模板
-- [SJTUThesis](https://github.com/sjtug/SJTUThesis) - 上海交通大学学位论文模板
+- [NEUBachelorThesis](https://github.com/tzaiyang/NEUBachelorThesis) - tzayang2018年开发的东北大学本科学位论文模板
 
 ---
 
@@ -631,20 +555,13 @@ xelatex main
 
 #### LaTeX 入门教程
 
-- [LaTeX 入门 - 刘海洋](https://book.douban.com/subject/24703731/)
 - [一份不太简短的 LaTeX 介绍](http://mirrors.ctan.org/info/lshort/chinese/lshort-zh-cn.pdf)
-- [Overleaf 教程](https://www.overleaf.com/learn)
 
 #### 在线工具
 
 - [Tables Generator](https://www.tablesgenerator.com/) - 在线生成 LaTeX 表格
 - [Mathpix](https://mathpix.com/) - 公式识别工具
 - [Detexify](http://detexify.kirelabs.org/classify.html) - 手写识别 LaTeX 符号
-
-### 获取帮助
-
-- [LaTeX Stack Exchange](https://tex.stackexchange.com/) - LaTeX 问答社区
-- [CTEX 社区](http://www.ctex.org/HomePage) - 中文 TeX 用户组
 
 ---
 
