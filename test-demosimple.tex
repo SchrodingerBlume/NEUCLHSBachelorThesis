@@ -1,0 +1,37 @@
+% 测试文件：验证从 dtx 生成的 sty 文件是否正常工作
+\documentclass{article}
+
+% 加载我们从 demo-simple.dtx 生成的宏包
+\usepackage{demosimple}
+
+\begin{document}
+
+\section{测试生成的宏包}
+
+\subsection{测试无参数命令}
+
+使用 \verb|\hello| 命令的输出：
+
+\hello
+
+\subsection{测试带参数命令}
+
+使用 \verb|\greet{World}| 命令的输出：
+
+\greet{World}
+
+使用 \verb|\greet{LaTeX}| 命令的输出：
+
+\greet{LaTeX}
+
+\section{结论}
+
+如果上面的命令都正确输出，说明：
+\begin{enumerate}
+  \item demo-simple.dtx 文件结构正确
+  \item 标记 \texttt{\%<*package>} 使用正确
+  \item DocStrip 提取过程成功
+  \item 生成的 demosimple.sty 可以正常使用
+\end{enumerate}
+
+\end{document}

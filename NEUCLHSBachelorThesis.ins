@@ -1,0 +1,90 @@
+%% Copyright (C) 2025 by Wu Junhao <neuclhswjh@163.com>
+%%
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3c of this license or (at your option) any later
+%% version. The latest version of this license is in the file:
+%%
+%%    http://www.latex-project.org/lppl.txt
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%%
+%% The Current Maintainer of this work is Wu Junhao.
+%%
+%% This work consists of the files NEUCLHSBachelorThesis.dtx,
+%% NEUCLHSBachelorThesis.ins and the derived files
+%% NEUCLHSBachelorThesis.cls and untilchapter.sty.
+
+\input docstrip.tex
+\keepsilent
+\askforoverwritefalse
+
+\preamble
+----------------------------------------------------------------
+NEUCLHSBachelorThesis --- Bachelor Thesis LaTeX Template for
+                          College of Life and Health Sciences,
+                          Northeastern University (NEU)
+
+Author:  Wu Junhao (Schrödinger's Blume)
+E-mail:  neuclhswjh@163.com
+         junhaowu_hit@163.com
+License: LPPL v1.3c or later
+Version: v1.1.1
+Date:    2025-11-17
+----------------------------------------------------------------
+\endpreamble
+
+\postamble
+
+Copyright (C) 2025 by Wu Junhao <neuclhswjh@163.com>
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License (LPPL), either
+version 1.3c of this license or (at your option) any later
+version. The latest version of this license is in the file:
+
+   http://www.latex-project.org/lppl.txt
+
+This work has the LPPL maintenance status `maintained'.
+
+The Current Maintainer of this work is Wu Junhao.
+
+This work consists of the files NEUCLHSBachelorThesis.dtx,
+NEUCLHSBachelorThesis.ins and the derived files
+NEUCLHSBachelorThesis.cls and untilchapter.sty.
+
+\endpostamble
+
+\usedir{tex/latex/neuclhsbachelorthesis}
+
+\generate{
+  \file{NEUCLHSBachelorThesis.cls}{\from{NEUCLHSBachelorThesis.dtx}{class}}
+  \file{untilchapter.sty}{\from{NEUCLHSBachelorThesis.dtx}{package}}
+}
+
+\obeyspaces
+\Msg{*************************************************************}
+\Msg{*                                                           *}
+\Msg{* To finish the installation you have to move the          *}
+\Msg{* following files into a directory searched by TeX:        *}
+\Msg{*                                                           *}
+\Msg{*     NEUCLHSBachelorThesis.cls                            *}
+\Msg{*     untilchapter.sty                                      *}
+\Msg{*     gb7714-2025.bbx                                       *}
+\Msg{*     gb7714-2025.cbx                                       *}
+\Msg{*                                                           *}
+\Msg{* To produce the documentation run the file                *}
+\Msg{* NEUCLHSBachelorThesis.dtx through XeLaTeX:              *}
+\Msg{*                                                           *}
+\Msg{*     xelatex NEUCLHSBachelorThesis.dtx                    *}
+\Msg{*     makeindex -s gind.ist NEUCLHSBachelorThesis.idx      *}
+\Msg{*     makeindex -s gglo.ist -o NEUCLHSBachelorThesis.gls   *}
+\Msg{*                NEUCLHSBachelorThesis.glo                 *}
+\Msg{*     xelatex NEUCLHSBachelorThesis.dtx                    *}
+\Msg{*     xelatex NEUCLHSBachelorThesis.dtx                    *}
+\Msg{*                                                           *}
+\Msg{* Happy TeXing!                                             *}
+\Msg{*                                                           *}
+\Msg{*************************************************************}
+
+\endbatchfile
