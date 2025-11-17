@@ -908,7 +908,7 @@ CJKmath=true, % 公式中直接写中文
 % 定义subsection页面专用样式
 \fancypagestyle{subsecpage}{%
   \fancyhf{}
-  \fancyfoot[C]{\wuhao-\hspace{0.25em}\thepage\hspace{0.25em}-sub}%
+  \fancyfoot[C]{\wuhao-\hspace{0.25em}\thepage\hspace{0.25em}-}%
   \fancyhead[L]{\wuhao 东北大学本科生毕业设计（论文）}%
   \fancyhead[R]{\wuhao \leftmark}%
   \setlength{\headsep}{12pt}%
@@ -918,7 +918,7 @@ CJKmath=true, % 公式中直接写中文
 % 定义subsubsection页面专用样式
 \fancypagestyle{subsubsecpage}{%
   \fancyhf{}
-  \fancyfoot[C]{\wuhao-\hspace{0.25em}\thepage\hspace{0.25em}-subsub}%
+  \fancyfoot[C]{\wuhao-\hspace{0.25em}\thepage\hspace{0.25em}-}%
   \fancyhead[L]{\wuhao 东北大学本科生毕业设计（论文）}%
   \fancyhead[R]{\wuhao \leftmark}%
   \setlength{\headsep}{14pt}%
@@ -1724,7 +1724,7 @@ CJKmath=true, % 公式中直接写中文
 % 定义表格（非续表）页面专用样式
 \fancypagestyle{bgpage}{%
   \fancyhf{}
-  \fancyfoot[C]{\wuhao-\hspace{0.25em}\thepage\hspace{0.25em}-bg}%
+  \fancyfoot[C]{\wuhao-\hspace{0.25em}\thepage\hspace{0.25em}-}%
   \fancyhead[L]{\wuhao 东北大学本科生毕业设计（论文）}%
   \fancyhead[R]{\wuhao\leftmark}%
   \setlength{\headsep}{12pt}%
@@ -1733,7 +1733,7 @@ CJKmath=true, % 公式中直接写中文
 % 定义续表页面专用样式
 \fancypagestyle{xbpage}{%
   \fancyhf{}
-  \fancyfoot[C]{\wuhao-\hspace{0.25em}\thepage\hspace{0.25em}-xb}%
+  \fancyfoot[C]{\wuhao-\hspace{0.25em}\thepage\hspace{0.25em}-}%
   \fancyhead[L]{\wuhao 东北大学本科生毕业设计（论文）}%
   \fancyhead[R]{\wuhao\leftmark}%
   \setlength{\headsep}{16pt}%
