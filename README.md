@@ -86,7 +86,7 @@
 | **操作系统** | Windows 10/11（推荐）<br>macOS / Linux（需配置中文字体） |
 | **编译引擎** | XeLaTeX（**必须**） |
 | **TeX 发行版** | TeX Live 2024 或更新版本 |
-| **编辑器** | TeXstudio（推荐）<br>VS Code + LaTeX Workshop<br>Overleaf（在线） |
+| **编辑器** | TeXstudio（本地，推荐）<br>VS Code + LaTeX Workshop（本地）<br>TeXPage（在线，推荐）<br>Overleaf（在线） |
 
 ### 字体要求
 
