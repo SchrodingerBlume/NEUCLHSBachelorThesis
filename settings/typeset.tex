@@ -1,0 +1,75 @@
+% ==================================== %
+% =======  排版（typeset）设置  ======== %
+% ==  已经调得很接近Word了，建议不要动  == %
+% ==================================== %
+
+% =========================== %
+% ======  中西文字距设置  ====== %
+% =========================== %
+\xeCJKsetup{CJKecglue=\hskip 0.25em minus 0.25em}
+
+% =========================== %
+% ======  中文字距设置  ====== %
+% =========================== %
+% \ziju{} % 在V-1.0.2中恢复了默认字距，此命令接受一个浮点数值
+
+% ================================= %
+% =========  全角符号宽度  ========== %
+% ======  这部分我没做太多测试  ====== %
+% ==  不满意可以调或者全删了恢复默认 == %
+% ================================= %
+
+% 符号宽度
+\xeCJKsetwidth{。；}{1.06em} 
+\xeCJKsetwidth{，}{0.8em}
+\xeCJKsetwidth{、}{0.78em}
+\xeCJKsetwidth{（）‘’“”}{1em}
+
+% 左边符号碰上右边符号时二者的整体宽度
+\xeCJKsetkern{）}{，}{0.5em}
+\xeCJKsetkern{）}{。}{0.5em}
+\xeCJKsetkern{）}{！}{0.5em}
+\xeCJKsetkern{）}{？}{0.5em}
+\xeCJKsetkern{’}{，}{0.5em}
+\xeCJKsetkern{’}{。}{0.5em}
+\xeCJKsetkern{’}{！}{0.5em}
+\xeCJKsetkern{’}{？}{0.5em}
+\xeCJKsetkern{”}{，}{0.5em}
+\xeCJKsetkern{”}{。}{0.5em}
+\xeCJKsetkern{”}{！}{0.5em}
+\xeCJKsetkern{”}{？}{0.5em}
+\xeCJKsetkern{：}{“}{0.5em}
+\xeCJKsetkern{：}{‘}{0.5em}
+\xeCJKsetkern{；}{“}{0.5em}
+\xeCJKsetkern{；}{’}{0.5em}
+\xeCJKsetkern{！}{”}{0.5em}
+\xeCJKsetkern{！}{’}{0.5em}
+\xeCJKsetkern{？}{”}{0.5em}
+\xeCJKsetkern{？}{’}{0.5em}
+\xeCJKsetkern{（}{“}{0.5em}
+\xeCJKsetkern{”}{）}{0.5em}
+
+% =========================== %
+% ======  西文字距设置  ====== %
+% =====  也是最好不要动  ===== %
+% =========================== %
+\fontdimen2\font=0.275em     % 字间空格
+\fontdimen3\font=0.1375em    % 拉伸
+\fontdimen4\font=0.0917em    % 压缩
+\fontdimen7\font=0em         % 无句末额外空格
+\spaceskip=0.25em plus 0.03em minus 0.07em
+
+% =========================== %
+% ======  西文断字设置  ====== %
+% =====  默认完全不断字  ===== %
+% ====  这个可以按需要调整  ==== %
+% =========================== %
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000 % hyphenpenalty越大断字出现的就越少
+\hbadness=10000 % tolerance越大，换行就会越少，即把本该断开放到下一行的单词，完整地留在当前行
+
+% 西文断字词典
+% 如果遇到了断字不对的情况，可以手动指定某单词如何断字
+% 例如以下命令使hyphenation只能从标有短横线的地方断开
+\hyphenation{hy-phen-a-tion}

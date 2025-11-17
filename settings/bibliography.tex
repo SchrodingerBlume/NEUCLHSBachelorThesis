@@ -1,0 +1,25 @@
+% =========================== %
+% ======  参考文献设置  ======= %
+% =========================== %
+\ExecuteBibliographyOptions{
+    % uppercase则人名全大写；lowercase则仅首字母大写
+    gbnamefmt = lowercase,
+    % 当true时，会国标的要求，使用"佚名""Anon""出版地不详"等补充信息
+    % 学校要求不添加这些信息
+    gbnoauthor = false,
+    % 使用连续出版物析出文献起止范围的卷期
+    gbpub = true,
+    % 中文文献用全角，英文文献用半角，是2025版本的新功能，目前存在bug（已自行修复）
+    gbpunctwidth = bylan,
+    % 显示url链接
+    url = true,
+    % 显示DOI号
+    doi = true
+    % url和DOI号建议保留，因为网络文献需要列出，建议在bib文件中手动删去url和DOI号
+}% 更多选项可以参考'参考文件/biblatex-gb7714-2015.pdf'
+
+% ======= 条目跨页设置 ======== %
+% 参数：true = 跨页, false = 不跨页
+% 默认不跨页
+% =========================== %
+\bibbreakentry{false}
