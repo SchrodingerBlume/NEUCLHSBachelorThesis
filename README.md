@@ -7,7 +7,7 @@
 **Bachelor Thesis LaTeX Template for College of Life and Health Sciences Northeastern University**
 
 [![License](https://img.shields.io/badge/license-LPPL%201.3c-blue)](LICENSES/LICENSE)
-[![GitHub release](https://img.shields.io/badge/release-v1.1.1-brightgreen)](https://github.com/SchrodingerBlume/NEUCLHSBachelorThesis/releases/tag/V-1.1.1)
+[![GitHub release](https://img.shields.io/badge/release-v1.1.2-brightgreen)](https://github.com/SchrodingerBlume/NEUCLHSBachelorThesis/releases/tag/V-1.1.2)
 [![GitHub stars](https://img.shields.io/github/stars/SchrodingerBlume/NEUCLHSBachelorThesis)](https://github.com/SchrodingerBlume/NEUCLHSBachelorThesis/stargazers)
 
 ---
