@@ -349,7 +349,7 @@
 
 \subsection{物理量名称、符号}
 
-论文中某一物理量的名称和符号应统一，公式的物理量变量符号用斜体，物理量常量符号用正体，理应遵循GB/T 3102.11—1993《物理科学和技术中使用的数学符号》：
+论文中某一物理量的名称和符号应统一，公式的物理量变量符号用斜体，物理量常量符号用正体，应遵循GB/T 3102.11—1993《物理科学和技术中使用的数学符号》：
 \begin{enumerate}[shuzi]
   \item 正文中的数学环境应使用\texttt{\$\$}包围，如：“\verb|$A_{italic}$、$B_\text{upright}$、|\\ \verb|$C^{中文也支持}$|”，编译得到“$A_{italic}$、$B_\text{upright}$、$C^{中文也支持}$”。
   \item 数学常数和特殊函数名用正体，可用\verb|\symup{}|命令实现。此外，在数学环境中，用\verb|\ee|、\verb|\ii|和\verb|\jj|，分别可以快捷地打出自然底数$\ee$、虚数单位$\ii$和$\jj$。对于小写希腊字母，应在命令前加上\verb|up|使之为正体，如：$\uppi = 3.14\dots$具体请参考第4点。
@@ -361,6 +361,7 @@
   \item 自然对数用 $\ln x$ 不用 $\log x$。
   \item 实部$\Re$和虚部$\Im$的字体使用罗马体，分别用\verb|$\Re$|和\verb|$\Im$|即可获得。
   \item Nabla算子使用粗正体，可以用\verb|$\mbfnabla$|编译得到$\mbfnabla$。
+  \item 小于等于号使用\verb|$\leqslant$|得到$\leqslant$，而勿用\verb|$\leq$|（$\leq$）；大于等于号同理。
   \item 提供波浪线\footnote{\texttt{\textbackslash blx}采用U+FF5E字符，不使用\texttt{\textbackslash textasciitilde}编译得到的“\textasciitilde”。区别在于前者为符合《中华人民共和国国家标准标点符号用法》4.13.1规定的一字宽，而后者非然。}、省略号和摄氏度的快捷命令：“\verb|1\blx 2个|”编译得到“1\blx 2个”；“\verb|未完待续\slh|”编译得到“未完待续\slh”；“\verb|23\ssd|”编译得到“23\ssd”，此外，摄氏度的Unicode字符℃也可以正常显示\footnote{Unicode字符形式的摄氏度（U+2103）编译后显示的是“°+C”的形式，而不是原来的字符。}。
 \end{enumerate}
 
