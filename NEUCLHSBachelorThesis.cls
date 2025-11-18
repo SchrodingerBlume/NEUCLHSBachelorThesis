@@ -1,5 +1,6 @@
-\ProvidesClass{NEUCLHSBachelorThesis}
-\providecommand{\Version}{V-1.1.1}
+\ProvidesClass{NEUCLHSBachelorThesis}[2025/11/18 v1.1.3 Bachelor Thesis Template for NEU CLHS]
+\InputIfFileExists{settings/printmode}{}{} % 设置打印模式（必选）
+\providecommand{\Version}{V-1.1.3}
 \providecommand{\PrintMode}{twoside}
 \LoadClass[UTF8,\PrintMode,a4paper,12pt]{ctexbook}
 \RequirePackage{xeCJK}
@@ -2285,7 +2286,7 @@ CJKmath=true, % 公式中直接写中文
 %---------- 用户设置 ----------%
 \InputIfFileExists{settings/cover}{}{} % 键入封面信息（必选）
 \InputIfFileExists{settings/statement}{}{} % 键入“郑重声明”信息（必选）
-\InputIfFileExists{settings/printmode}{}{} % 设置打印模式（必选）
+% printmode 在 cls 文件的开头
 \InputIfFileExists{settings/siunit}{}{} % 声明自定义单位（可选）
 \InputIfFileExists{settings/typeset}{}{} % 设置全文排版细节（可选）
 \InputIfFileExists{settings/bibliography}{}{} % 设置参考文献页的局部排版细节（可选）
