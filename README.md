@@ -124,7 +124,7 @@
    - 初次编译时间较长
    - 大约10至20秒可得到编译结果
 
-**以上可参考[视频教程](https://space.bilibili.com/3546563741748057/upload/video)**
+**以上可参考[视频教程](https://www.bilibili.com/video/BV1t9yVBfEHt/?share_source=copy_web&vd_source=73899c9153f3d580a9fffe6ac6644b58)**
 
 6. **开始编写**
    - 打开 `settings/cover.tex` 填写个人信息
