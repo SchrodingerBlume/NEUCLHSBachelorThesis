@@ -7,7 +7,7 @@
 **Bachelor Thesis LaTeX Template for College of Life and Health Sciences Northeastern University**
 
 [![License](https://img.shields.io/badge/license-LPPL%201.3c-blue)](LICENSES/LICENSE)
-[![GitHub release](https://img.shields.io/badge/release-v1.1.2-brightgreen)](https://github.com/SchrodingerBlume/NEUCLHSBachelorThesis/releases/tag/V-1.1.2)
+[![GitHub release](https://img.shields.io/badge/release-v1.1.3-brightgreen)](https://github.com/SchrodingerBlume/NEUCLHSBachelorThesis/releases/tag/V-1.1.3)
 [![GitHub stars](https://img.shields.io/github/stars/SchrodingerBlume/NEUCLHSBachelorThesis)](https://github.com/SchrodingerBlume/NEUCLHSBachelorThesis/stargazers)
 
 ---
@@ -24,7 +24,7 @@
 - [模板特点](#模板特点)
 - [使用环境](#使用环境)
 - [快速开始](#快速开始)
-  - [方式一：TeXPage在线使用](#方式一TeXPage在线使用推荐)
+  - [方式一：TeXPage在线使用](#方式一texpage在线使用)
   - [方式二：本地编译](#方式二本地编译)
 - [使用说明](#使用说明)
   - [基础配置](#基础配置)
@@ -298,10 +298,10 @@ latexmk -c
 ├── chap01.tex         第一章
 ├── chap02.tex         第二章
 ├── ...                更多章节
+├── references.bib     参考文献数据库
 ├── ack.tex            致谢
 ├── appendix01.tex     附录1
-├── appendix02.tex     附录2
-└── references.bib     参考文献数据库
+└── appendix02.tex     附录2
 ```
 
 ### 编译论文
@@ -446,10 +446,14 @@ xelatex main
 
 ## 版本更新
 
-### V-1.1.2 (2025-11-18)- 当前版本
+### V-1.1.3（2025-11-18）- 当前版本
 
 **主要改进：**
+修复了打印模式设置`printmode`失效的问题。
 
+### V-1.1.2 (2025-11-18)
+
+**主要改进：**
 示例文档中数学部分增加了对小于等于号及类似符号的使用要求。
 
 ### V-1.1.1 (2025-11-17)
