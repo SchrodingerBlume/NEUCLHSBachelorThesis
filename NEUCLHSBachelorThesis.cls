@@ -1,8 +1,9 @@
-\ProvidesClass{NEUCLHSBachelorThesis}[2025/11/18 v1.1.3 Bachelor Thesis Template for NEU CLHS]
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{NEUCLHSBachelorThesis}[2025/11/22 v1.2.0 A Bachelor Thesis Template for NEU CLHS students!]
 \InputIfFileExists{settings/printmode}{}{} % 设置打印模式（必选）
-\providecommand{\Version}{V-1.1.3}
+\providecommand{\Version}{V-1.2.0}
 \providecommand{\PrintMode}{twoside}
-\LoadClass[UTF8,\PrintMode,a4paper,12pt]{ctexbook}
+\LoadClass[UTF8,\PrintMode,a4paper,12pt,fontset=none]{ctexbook}
 \RequirePackage{xeCJK}
 \RequirePackage{pdfpages}
 \RequirePackage{float}
@@ -308,160 +309,280 @@ CJKmath=true, % 公式中直接写中文
 
 %--- 中文字体配置 ---%
 
-% 在非Windows平台（如Overleaf或Linux平台）编译时，请自行将Windows下默认宋黑仿楷字体（中易字库）“SIMSUN.TTC、SIMHEI.TTF、SIMFANG.TTF及SIMKAI.TTF”复制到fonts文件夹下
+% 在非Windows平台（如Overleaf或Linux平台）编译时，请自行将Windows下默认宋黑仿楷字体（中易字库）"SIMSUN.TTC、SIMHEI.TTF、SIMFANG.TTF及SIMKAI.TTF"复制到fonts文件夹下
+
+\newcommand{\fakeboldvalue}{2.17}   % 伪粗体参数
+\newcommand{\fakeslantvalue}{0.333} % 伪斜体参数
+
+\newif\iffound@font
+\found@fontfalse
+
+% 优先级 fonts目录 > 系统字体 > 开源字体
 
 % 宋体
 \IfFileExists{./fonts/SIMSUN.TTC}{
-    % 本地字体存在，使用本地字体
-    \setCJKmainfont[
-        Path=./fonts/,
-        Extension=.TTC,
-        AutoFakeBold=2.17,
-        AutoFakeSlant=0.333,
-        UprightFont=SIMSUN
-    ]{simsun}
+  \setCJKmainfont{SIMSUN}[
+    Path          = ./fonts/,
+    Extension     = .TTC,
+    AutoFakeBold  = \fakeboldvalue,
+    AutoFakeSlant = \fakeslantvalue,
+  ]
+  \setCJKfamilyfont{zhsong}{SIMSUN}[
+    Path          = ./fonts/,
+    Extension     = .TTC,
+    AutoFakeBold  = \fakeboldvalue,
+    AutoFakeSlant = \fakeslantvalue,
+  ]
+  \found@fonttrue
 }{
-    % 本地字体不存在，尝试系统字体
-    \IfFontExistsTF{SimSun}{
-        \setCJKmainfont{SimSun}[
-            AutoFakeBold=2.17,
-            AutoFakeSlant=0.333
-        ]
-    }{
-        % 系统字体不存在，回退到Fandol宋体
-        \setCJKmainfont{FandolSong-Regular}[
-            AutoFakeBold=2.17,
-            AutoFakeSlant=0.333
-        ]
-    }
-}
-
-\IfFileExists{./fonts/SIMSUN.TTC}{
-    \setCJKfamilyfont{song_windows}[
-        Path=./fonts/,
-        Extension=.TTC,
-        AutoFakeBold=2.17,
-        AutoFakeSlant=0.333,
-        UprightFont=SIMSUN
-    ]{simsun}
-}{
-    \IfFontExistsTF{SimSun}{
-        \setCJKfamilyfont{song_windows}{SimSun}[
-            AutoFakeBold=2.17,
-            AutoFakeSlant=0.333
-        ]
-    }{
-        \setCJKfamilyfont{song_windows}{FandolSong-Regular}[
-            AutoFakeBold=2.17,
-            AutoFakeSlant=0.333
-        ]
-    }
-}
-\renewcommand{\songti}{\CJKfamily{song_windows}}
-
-% 西文宋体
-\IfFileExists{./fonts/SIMSUN.TTC}{
-    \newfontfamily\SimSunWestern{SIMSUN}[
-        Path=./fonts/,
-        Extension=.TTC,
-        UprightFont=*
+  \IfFontExistsTF{SimSun}{
+    \setCJKmainfont{SimSun}[
+      AutoFakeBold  = \fakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
     ]
-}{
-    \IfFontExistsTF{SimSun}{
-        \newfontfamily\SimSunWestern{SimSun}
+    \setCJKfamilyfont{zhsong}{SimSun}[
+      AutoFakeBold  = \fakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+    \found@fonttrue
+  }{
+    \IfFontExistsTF{Songti SC}{
+      \setCJKmainfont{Songti SC}[
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+      \setCJKfamilyfont{zhsong}{Songti SC}[
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+      \found@fonttrue
     }{
-        \newfontfamily\SimSunWestern{FandolSong-Regular}
+      \IfFontExistsTF{Noto Serif CJK SC}{
+        \setCJKmainfont{Noto Serif CJK SC}[
+          AutoFakeBold  = \fakeboldvalue,
+          AutoFakeSlant = \fakeslantvalue,
+        ]
+        \setCJKfamilyfont{zhsong}{Noto Serif CJK SC}[
+          AutoFakeBold  = \fakeboldvalue,
+          AutoFakeSlant = \fakeslantvalue,
+        ]
+        \found@fonttrue
+      }{
+        \IfFontExistsTF{Source Han Serif SC}{
+          \setCJKmainfont{Source Han Serif SC}[
+            AutoFakeBold  = \fakeboldvalue,
+            AutoFakeSlant = \fakeslantvalue,
+          ]
+          \setCJKfamilyfont{zhsong}{Source Han Serif SC}[
+            AutoFakeBold  = \fakeboldvalue,
+            AutoFakeSlant = \fakeslantvalue,
+          ]
+          \found@fonttrue
+        }{
+          \setCJKmainfont{FandolSong}[
+            Extension     = .otf,
+            UprightFont   = *-Regular,
+            AutoFakeBold  = \fakeboldvalue,
+            AutoFakeSlant = \fakeslantvalue,
+          ]
+          \setCJKfamilyfont{zhsong}{FandolSong}[
+            Extension     = .otf,
+            UprightFont   = *-Regular,
+            AutoFakeBold  = \fakeboldvalue,
+            AutoFakeSlant = \fakeslantvalue,
+          ]
+        }
+      }
     }
+  }
 }
-\newcommand{\songtiarabic}[1]{{\SimSunWestern #1}}
 
 % 黑体
 \IfFileExists{./fonts/SIMHEI.TTF}{
-    \setCJKfamilyfont{hei_windows}[
-        Path=./fonts/,
-        Extension=.TTF,
-        AutoFakeSlant=0.333,
-        UprightFont=SIMHEI
-    ]{simhei}
+  \setCJKfamilyfont{zhhei}{SIMHEI}[
+    Path          = ./fonts/,
+    Extension     = .TTF,
+    AutoFakeBold  = \fakeboldvalue,
+    AutoFakeSlant = \fakeslantvalue,
+  ]
 }{
-    \IfFontExistsTF{SimHei}{
-        \setCJKfamilyfont{hei_windows}{SimHei}[
-            AutoFakeSlant=0.333
-        ]
-    }{
-        \setCJKfamilyfont{hei_windows}{FandolHei-Regular}[
-            AutoFakeSlant=0.333
-        ]
-    }
-}
-\renewcommand{\heiti}{
-  \CJKfamily{hei_windows}%
-  \fontspec{Times New Roman}
-}
-
-% 西文黑体
-\IfFileExists{./fonts/SIMHEI.TTF}{
-    \newfontfamily\SimHeiWestern{SIMHEI}[
-        Path=./fonts/,
-        Extension=.TTF,
-        UprightFont=*
+  \IfFontExistsTF{SimHei}{
+    \setCJKfamilyfont{zhhei}{SimHei}[
+      AutoFakeBold  = \fakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
     ]
-}{
-    \IfFontExistsTF{SimHei}{
-        \newfontfamily\SimHeiWestern{SimHei}
+  }{
+    \IfFontExistsTF{Heiti SC}{
+      \setCJKfamilyfont{zhhei}{Heiti SC}[
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
     }{
-        \newfontfamily\SimHeiWestern{FandolHei-Regular}
-    }
-}
-\newcommand{\heitiarabic}[1]{{\SimHeiWestern #1}}
-
-% 仿宋
-\IfFileExists{./fonts/SIMFANG.TTF}{
-    \setCJKfamilyfont{fang_windows}[
-        Path=./fonts/,
-        Extension=.TTF,
-        AutoFakeBold=2.17,
-        AutoFakeSlant=0.333,
-        UprightFont=SIMFANG
-    ]{simfang}
-}{
-    \IfFontExistsTF{FangSong}{
-        \setCJKfamilyfont{fang_windows}{FangSong}[
-            AutoFakeBold=2.17,
-            AutoFakeSlant=0.333
+      \IfFontExistsTF{Noto Sans CJK SC}{
+        \setCJKfamilyfont{zhhei}{Noto Sans CJK SC}[
+          AutoFakeBold  = \fakeboldvalue,
+          AutoFakeSlant = \fakeslantvalue,
         ]
-    }{
-        \setCJKfamilyfont{fang_windows}{FandolFang-Regular}[
-            AutoFakeBold=2.17,
-            AutoFakeSlant=0.333
-        ]
+      }{
+        \IfFontExistsTF{Source Han Sans SC}{
+          \setCJKfamilyfont{zhhei}{Source Han Sans SC}[
+            AutoFakeBold  = \fakeboldvalue,
+            AutoFakeSlant = \fakeslantvalue,
+          ]
+        }{
+          \setCJKfamilyfont{zhhei}{FandolHei}[
+            Extension     = .otf,
+            UprightFont   = *-Regular,
+            AutoFakeBold  = \fakeboldvalue,
+            AutoFakeSlant = \fakeslantvalue,
+          ]
+        }
+      }
     }
+  }
 }
-\renewcommand{\fangsong}{\CJKfamily{fang_windows}}
 
 % 楷体
 \IfFileExists{./fonts/SIMKAI.TTF}{
-    \setCJKfamilyfont{kai_windows}[
-        Path=./fonts/,
-        Extension=.TTF,
-        AutoFakeBold=2.17,
-        AutoFakeSlant=0.333,
-        UprightFont=SIMKAI
-    ]{simkai}
+  \setCJKfamilyfont{zhkai}{SIMKAI}[
+    Path          = ./fonts/,
+    Extension     = .TTF,
+    AutoFakeBold  = \fakeboldvalue,
+    AutoFakeSlant = \fakeslantvalue,
+  ]
 }{
-    \IfFontExistsTF{KaiTi}{
-        \setCJKfamilyfont{kai_windows}{KaiTi}[
-            AutoFakeBold=2.17,
-            AutoFakeSlant=0.333
-        ]
+  \IfFontExistsTF{KaiTi}{
+    \setCJKfamilyfont{zhkai}{KaiTi}[
+      AutoFakeBold  = \fakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+  }{
+    \IfFontExistsTF{Kaiti SC}{
+      \setCJKfamilyfont{zhkai}{Kaiti SC}[
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
     }{
-        \setCJKfamilyfont{kai_windows}{FandolKai-Regular}[
-            AutoFakeBold=2.17,
-            AutoFakeSlant=0.333
-        ]
+      \setCJKfamilyfont{zhkai}{FandolKai}[
+        Extension     = .otf,
+        UprightFont   = *-Regular,
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
     }
+  }
 }
-\renewcommand{\kaishu}{\CJKfamily{kai_windows}}
+
+% 仿宋
+\IfFileExists{./fonts/SIMFANG.TTF}{
+  \setCJKfamilyfont{zhfs}{SIMFANG}[
+    Path          = ./fonts/,
+    Extension     = .TTF,
+    AutoFakeBold  = \fakeboldvalue,
+    AutoFakeSlant = \fakeslantvalue,
+  ]
+  \setCJKmonofont{SIMFANG}[
+    Path          = ./fonts/,
+    Extension     = .TTF,
+    AutoFakeBold  = \fakeboldvalue,
+    AutoFakeSlant = \fakeslantvalue,
+  ]
+}{
+  \IfFontExistsTF{FangSong}{
+    \setCJKfamilyfont{zhfs}{FangSong}[
+      AutoFakeBold  = \fakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+    \setCJKmonofont{FangSong}[
+      AutoFakeBold  = \fakeboldvalue,
+      AutoFakeSlant = \fakeslantvalue,
+    ]
+  }{
+    \IfFontExistsTF{STFangsong}{
+      \setCJKfamilyfont{zhfs}{STFangsong}[
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+      \setCJKmonofont{STFangsong}[
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+    }{
+      \setCJKfamilyfont{zhfs}{FandolFang}[
+        Extension     = .otf,
+        UprightFont   = *-Regular,
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+      \setCJKmonofont{FandolFang}[
+        Extension     = .otf,
+        UprightFont   = *-Regular,
+        AutoFakeBold  = \fakeboldvalue,
+        AutoFakeSlant = \fakeslantvalue,
+      ]
+    }
+  }
+}
+
+% 定义 ctex 命令
+\newcommand*{\songti}{\CJKfamily{zhsong}}
+\newcommand*{\heiti}{\CJKfamily{zhhei}}
+\newcommand*{\kaishu}{\CJKfamily{zhkai}}
+\newcommand*{\fangsong}{\CJKfamily{zhfs}}
+
+% 西文宋体
+\IfFileExists{./fonts/SIMSUN.TTC}{
+  \newfontfamily\SimSunWestern{SIMSUN}[
+    Path      = ./fonts/,
+    Extension = .TTC,
+  ]
+}{
+  \IfFontExistsTF{SimSun}{
+    \newfontfamily\SimSunWestern{SimSun}
+  }{
+    \IfFontExistsTF{Songti SC}{
+      \newfontfamily\SimSunWestern{Songti SC}
+    }{
+      \IfFontExistsTF{Noto Serif CJK SC}{
+        \newfontfamily\SimSunWestern{Noto Serif CJK SC}
+      }{
+        \IfFontExistsTF{Source Han Serif SC}{
+          \newfontfamily\SimSunWestern{Source Han Serif SC}
+        }{
+          \newfontfamily\SimSunWestern{FandolSong-Regular}
+        }
+      }
+    }
+  }
+}
+\newcommand{\songtiarabic}[1]{{\SimSunWestern #1}}
+
+% 西文黑体
+\IfFileExists{./fonts/SIMHEI.TTF}{
+  \newfontfamily\SimHeiWestern{SIMHEI}[
+    Path      = ./fonts/,
+    Extension = .TTF,
+  ]
+}{
+  \IfFontExistsTF{SimHei}{
+    \newfontfamily\SimHeiWestern{SimHei}
+  }{
+    \IfFontExistsTF{Heiti SC}{
+      \newfontfamily\SimHeiWestern{Heiti SC}
+    }{
+      \IfFontExistsTF{Noto Sans CJK SC}{
+        \newfontfamily\SimHeiWestern{Noto Sans CJK SC}
+      }{
+        \IfFontExistsTF{Source Han Sans SC}{
+          \newfontfamily\SimHeiWestern{Source Han Sans SC}
+        }{
+          \newfontfamily\SimHeiWestern{FandolHei-Regular}
+        }
+      }
+    }
+  }
+}
+\newcommand{\heitiarabic}[1]{{\SimHeiWestern #1}}
 
 %--- 字号 ---%
 
@@ -2001,6 +2122,9 @@ CJKmath=true, % 公式中直接写中文
   \vspace{-1em}
 }
 
+% 定义verbx命令，用于在表格中安全显示代码
+\newcommand{\verbx}[1]{\texttt{\detokenize{#1}}}
+
 %------- 参考文献 -------%
 \RequirePackage[
     backend = biber,
@@ -2024,41 +2148,38 @@ CJKmath=true, % 公式中直接写中文
     % 显示DOI号
     doi = true
 ]{biblatex}%
+
 \addbibresource{data/references.bib} % bib文件名
+
 \AtBeginBibliography{%
 \setlength{\baselineskip}{23.086043pt}%
 }
 \setlength{\bibitemsep}{0pt}
 \setlength{\biblabelsep}{7.4mm}
+
 % \DeclareFieldFormat[article]{journaltitle}{\mkbibemph{#1}} % 期刊名斜体，可选启用
 % \DeclareFieldFormat[article]{volume}{\mkbibemph{#1}} % 卷数斜体，可选启用
 % \DeclareFieldFormat{date}{\textbf{#1}} % 年份斜体，可选启用
-\DeclareCiteCommand{\citenum} % 自订“裸数字”命令
+
+\DeclareCiteCommand{\citenum} % “裸数字”命令
   {\usebibmacro{prenote}}
   {\printtext[bibhyperref]{\printfield{labelnumber}}} % 仅输出序号并带链接
   {\multicitedelim}
   {\usebibmacro{postnote}}
+
 \setcounter{gbrefcompress}{3} % 连续3篇文献才开始压缩
+
 \def\gbpunctcommacite{\addcomma} % 修改宏包，使引用时用半角逗号
+
 % 修改全角括号为半角括号
 \def\gbpunctprl{(}%
 \def\gbpunctprr{)}%
 \def\CharParenLeft{\iffieldequalstr{userd}{chinese}{(}{(}}
 \def\CharParenRight{\iffieldequalstr{userd}{chinese}{)}{)}}%
-% 以下五行代码解决了gbpunctwidth=bylan的bug，文献标题后的标点问题
-% 参考Hu Zhenzhen，20180405，为texlive2017以上版本中的beamer兼容性做的处理
-% \DeclareFieldFormat{title}{#1}%
-% \DeclareFieldFormat[article,patent,thesis,unpublished]{title}{#1}
-% \makeatletter
-% \AtBeginDocument{\patchcmd{\abx@macro@title}{\newunitpunct}{}{}{}}{}
-% \makeatother
-% 下面这行代码解决了连续出版物标识符[J]后多一个空格的bug
-\def\gbpunctdot{\unskip\mbox{．}\allowbreak}
-% 以上问题及解决办法已反馈至GibHub官方仓库，注释掉则代表已经被官方采纳
 
 % 设置是否允许条目跨页
 \newif\ifbibbreakentry
-\bibbreakentryfalse % 默认 false，即不跨页
+\bibbreakentryfalse % 默认false，即不跨页
 
 \newcommand{\bibbreakentry}[1]{%
   \def\temparg{#1}%
@@ -2073,6 +2194,62 @@ CJKmath=true, % 公式中直接写中文
 \AtBeginBibliography{%
   \ifbibbreakentry\else\interlinepenalty=10000\fi
 }
+
+% ========== 问题修复代码 ==========%
+% 以下五行代码解决了gbpunctwidth=bylan的bug，文献标题后的标点问题
+% 参考Hu Zhenzhen，20180405，为texlive2017以上版本中的beamer兼容性做的处理
+% \DeclareFieldFormat{title}{#1}%
+% \DeclareFieldFormat[article,patent,thesis,unpublished]{title}{#1}
+% \makeatletter
+% \AtBeginDocument{\patchcmd{\abx@macro@title}{\newunitpunct}{}{}{}}{}
+% \makeatother
+% 下面这行代码解决了连续出版物标识符[J]后多一个空格的bug
+\def\gbpunctdot{\unskip\mbox{．}\allowbreak}
+
+% 以下代码解决学位论文不显示urldate的问题
+
+% 创建一个控制学位论文类型显示的开关
+\newtoggle{bbx:thesistype}
+\DeclareBibliographyOption{thesistype}[true]{%
+  \settoggle{bbx:thesistype}{#1}}
+% 默认不显示学位论文类型
+\ExecuteBibliographyOptions{thesistype=false}
+
+% 重定义thesis驱动
+\DeclareBibliographyDriver{thesis}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}%
+  \ifnameundef{namea}{}{\setunit{\labelnamepunct}\newblock}%
+  \usebibmacro{title}%
+  \newunit\newblock
+  \usebibmacro{byeditor+others}%
+  \newunit\newblock
+  \iftoggle{bbx:thesistype}{\printfield{type}}{}% 根据选项控制是否显示
+  \setunit*{\innerspacedelim}%
+  \printfield{number}%
+  \newunit\newblock
+  \printfield{version}%
+  \newunit
+  \printfield{note}%
+  \newunit\newblock
+  \usebibmacro{institution+location+date}%
+  \usebibmacro{chapter+pages}%
+  \usebibmacro{online:url+urldate}% 使用online宏以显示urldate
+  \newunit
+  \printfield{pagetotal}%
+  \newunit\newblock
+  \usebibmacro{addendum+pubstate}%
+  \setunit{\bibpagerefpunct}\newblock
+  \usebibmacro{pageref}%
+  \newunit\newblock
+  \iftoggle{bbx:related}
+    {\usebibmacro{related:init}%
+     \usebibmacro{related}}
+    {}%
+  \usebibmacro{finentry}}
+
+% 以上问题及解决办法已反馈至GibHub官方仓库，注释掉则代表官方版本已解决
 
 % ------- 附录1 -------%
 %--- 标题 ---%
