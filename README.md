@@ -7,7 +7,7 @@
 **Bachelor Thesis LaTeX Template for College of Life and Health Sciences Northeastern University**
 
 [![License](https://img.shields.io/badge/license-LPPL%201.3c-blue)](LICENSES/LICENSE)
-[![GitHub release](https://img.shields.io/badge/release-v1.1.3-brightgreen)](https://github.com/SchrodingerBlume/NEUCLHSBachelorThesis/releases/tag/V-1.1.3)
+[![GitHub release](https://img.shields.io/badge/release-v1.2.0-brightgreen)](https://github.com/SchrodingerBlume/NEUCLHSBachelorThesis/releases/tag/V-1.2.0)
 [![GitHub stars](https://img.shields.io/github/stars/SchrodingerBlume/NEUCLHSBachelorThesis)](https://github.com/SchrodingerBlume/NEUCLHSBachelorThesis/stargazers)
 
 ---
@@ -447,39 +447,19 @@ xelatex main
 
 **A:** 多编译几次（至少 2 次），LaTeX 需要多次编译来更新交叉引用。
 
-#### Q6: 表格中不能使用 `\verb` 命令
+#### Q6: 表格、脚注中，甚至要加粗时不能使用 `\verb` 命令
 
-**A:** 这是 `\sdbiaoge` 命令的已知限制。
+**A:** 改用本模板提供的 `\verbx` 命令。
 
 ---
 
 ## 版本更新
 
-### V-1.1.3（2025-11-18）- 当前版本
+### V-1.2.0（2025-11-22）- 当前版本
 
-**主要改进：**
-修复了打印模式设置`printmode`失效的问题。
+修复了学位论文 `urldate` 不显示的 bug 并更正了 `bibkey` 使用说明（`masterthesis` → `mastersthesis`），新增了引文逗号格式设置、字体检测优化、学位论文类型显示控制和 `\verbx{}` 命令（用于表格、脚注等 `\verb||` 会报错的场景）等功能改进。
 
-### V-1.1.2 (2025-11-18)
-
-**主要改进：**
-示例文档中数学部分增加了对小于等于号及类似符号的使用要求。
-
-### V-1.1.1 (2025-11-17)
-
-**主要改进：**
-- ✅ 完成模板结构的模块化重构
-- ✅ 所有配置文件集中至 `settings/` 目录
-- ✅ 修正表格、摄氏度、波浪线等细节问题
-- ✅ 优化数学排版，上下标样式更接近 Word
-- ✅ 新增快捷命令：`\shang{}`、`\xia{}`、`\ssd`
-- ✅ 改进节标题换页控制，减少页面样式异常
-
-**详细更新内容请查看：** [更新说明.md](更新说明.md)
-
-### 历史版本
-
-更多历史版本信息请查看 [更新说明.md](更新说明.md)
+**详细更新内容与更多历史版本信息请查看：** [更新说明.md](更新说明.md)
 
 ---
 
