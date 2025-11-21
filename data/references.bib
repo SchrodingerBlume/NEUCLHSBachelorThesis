@@ -14,7 +14,7 @@
   edition   = {版次},
   address   = {出版地},
   publisher = {出版单位},
-  year      = {出版年份},
+  year      = {2077},
   pages     = {引文页码}
 } % 参考文献[1]
 
@@ -44,7 +44,7 @@
   title     = {论文集名},
   address   = {出版地},
   publisher = {出版单位},
-  year      = {出版年份},
+  year      = {2077},
   pages     = {起止页码}
 } % 参考文献[5]
 
@@ -64,7 +64,7 @@
   edition   = {版本},
   address   = {出版地},
   publisher = {出版社},
-  year      = {年份}
+  year      = {2077}
 } % 参考文献[7]
 
 @collection{collection_example2,
@@ -78,12 +78,12 @@
 
 % 以下三个条目为学位论文[D]的示例
 
-@phdthesis{thesis_example1,
+@phdthesis{thesis_example1, % 或mastersthesis
   author  = {作者},
   title   = {论文题目},
   address = {保存地},
   school  = {保存单位},
-  year    = {年份}
+  year    = {2077}
 } % 参考文献[9]
 
 @phdthesis{thesis_example2,
@@ -99,9 +99,10 @@
   title   = {面向中文信息处理的现代汉语并列结构研究},
   address = {北京},
   school  = {北京大学},
-  year    = {2003[2013-10-14]},
-  url     = {http://thesis.lib.pku.edu.cn/dlib/List.asp?lang=gb&type=Reader&DocGroupID=4&DocID=6328}
-} % 参考文献[11]，urldate无法显示，https://github.com/hushidong/biblatex-gb7714-2025/issues/5
+  year    = {2003},
+  url     = {http://thesis.lib.pku.edu.cn/dlib/List.asp?lang=gb&type=Reader&DocGroupID=4&DocID=6328},
+  urldate    = {2013-10-14}
+} % 参考文献[11]，官方样式的urldate无法显示，https://github.com/hushidong/biblatex-gb7714-2025/issues/5，本模板已解决
 
 % 以下三个条目为报告[R]的示例
 
@@ -110,7 +111,7 @@
   title       = {报告题目},
   address     = {报告地},
   institution = {报告会主办单位},
-  year        = {报告年份}
+  year        = {2077}
 } % 参考文献[12]
 
 @techreport{report_example2,
@@ -152,7 +153,8 @@
   title     = {标准名称：标准代号},
   address   = {出版地},
   publisher = {出版单位},
-  year      = {出版年份}
+  year      = {2077},
+  pages     = {页码}
 } % 参考文献[17]
 
 @standard{standard_example2,
@@ -160,7 +162,8 @@
   title     = {文献著录：第4部分\,\,非书资料：GB/T3792.4—2009},
   address   = {北京},
   publisher = {中国标准出版社},
-  year      = {2010:3}
+  year      = {2010},
+  pages     = {3}
 } % 参考文献[18]
 
 % 以下两个条目为丛书析出文献[M]//的示例
@@ -172,7 +175,7 @@
   booktitle = {丛书题名},
   address   = {出版地},
   publisher = {出版社},
-  year      = {出版年},
+  year      = {2077},
   pages     = {页码}
 } % 参考文献[19]
 
@@ -195,8 +198,8 @@
   booktitle = {会议集提名：版本项},
   address   = {会议集出版地},
   publisher = {出版社},
-  year      = {出版年},
-  pages     = {引用页码}
+  year      = {2077},
+  pages     = {页码}
 } % 参考文献[21]
 
 @inproceedings{inconference_example2,
@@ -247,7 +250,7 @@
   author  = {作者},
   title   = {文章题目},
   journal = {期刊名},
-  year    = {年},
+  year    = {2077},
   volume  = {卷},
   number  = {期},
   pages   = {页码}
@@ -269,7 +272,7 @@
   author       = {作者},
   title        = {文章题目},
   journaltitle = {报纸名},
-  date         = {出版日期},
+  date         = {2077-07-17},
   number       = {版次} 
 } % 参考文献[29]
 
